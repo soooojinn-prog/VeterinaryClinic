@@ -1,0 +1,462 @@
+/* =====================================================
+   sub.css — 서브 페이지 전용 스타일
+   (about.html / service.html / contact.html 에서만 사용)
+   style.css 와 함께 로드됩니다
+===================================================== */
+
+/* ===== 서브 페이지 상단 헤더 배너 ===== */
+.sub-page-header {
+  position: relative;
+  height: 320px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 80px; /* 고정 헤더 높이만큼 내려줌 */
+}
+
+.sub-page-header-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform: scale(1.05);
+  transition: transform 8s ease;
+}
+
+.sub-page-header-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(13,10,8,0.55) 0%,
+    rgba(13,10,8,0.40) 50%,
+    rgba(13,10,8,0.65) 100%
+  );
+}
+
+.sub-page-header-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  width: 100%;
+}
+
+.sub-page-header-content h1 {
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+}
+
+.sub-page-header-content p {
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255,255,255,0.8);
+  margin-bottom: 18px;
+}
+
+/* ===== 브레드크럼 ===== */
+.breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+}
+
+.breadcrumb a {
+  color: rgba(255,255,255,0.6);
+  transition: color 0.2s;
+}
+
+.breadcrumb a:hover {
+  color: var(--primary-light);
+}
+
+.breadcrumb i {
+  font-size: 10px;
+}
+
+.breadcrumb span {
+  color: var(--primary-light);
+  font-weight: 500;
+}
+
+/* ===== 서브 탭 내비게이션 ===== */
+.sub-tab-nav {
+  background: white;
+  border-bottom: 2px solid var(--gray-light);
+  position: sticky;
+  top: 80px; /* 헤더 높이 */
+  z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.sub-tab-list {
+  display: flex;
+  align-items: center;
+}
+
+.sub-tab-link {
+  display: block;
+  padding: 18px 32px;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gray);
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+}
+
+.sub-tab-link:hover {
+  color: var(--primary);
+  background: rgba(158,123,79,0.04);
+}
+
+.sub-tab-link.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  font-weight: 700;
+}
+
+/* ===== 서브 페이지: 헤더 항상 불투명하게 (흰 배경 위 로고/텍스트 보임) ===== */
+#header {
+  background: rgba(255,255,255,0.97);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 2px 30px rgba(0,0,0,0.08);
+}
+#header .logo-icon img {
+  filter: drop-shadow(0 1px 6px rgba(0,0,0,0.10));
+}
+#header .logo-main { color: var(--dark); }
+#header .logo-sub  { color: var(--gray); }
+#header .nav-item > a { color: var(--dark-2); }
+
+/* ===== 현재 메뉴 헤더 강조 ===== */
+.nav-item.active-menu > a {
+  color: var(--primary-light) !important;
+}
+
+#header.scrolled .nav-item.active-menu > a {
+  color: var(--primary) !important;
+}
+
+/* ===== 콘텐츠 플레이스홀더 (내용 입력 전 임시 표시) ===== */
+.content-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 80px 20px;
+  background: var(--bg-light);
+  border-radius: var(--radius);
+  border: 2px dashed var(--gray-light);
+  color: var(--gray);
+  text-align: center;
+}
+
+.content-placeholder i {
+  font-size: 48px;
+  color: var(--primary-light);
+  opacity: 0.5;
+}
+
+.content-placeholder p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* ===== 서브 페이지 섹션 패딩 축소 ===== */
+main .section {
+  padding: 60px 0;
+}
+
+/* ===== 페이지 섹션 제목 (인사말 / 의료진소개 / 병원시설 공통) ===== */
+.page-section-heading {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.page-section-heading::before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 2px;
+  background: var(--dark);
+  margin: 0 auto 12px;
+}
+
+.page-section-heading h2 {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 800;
+  color: var(--dark);
+  letter-spacing: -0.02em;
+}
+
+/* ===== 시설 슬라이더 ===== */
+.facility-section {
+  padding-bottom: 80px;
+}
+
+.facility-slider {
+  margin-top: 40px;
+}
+
+/* 메인 이미지 영역 */
+.facility-slider-main {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 420px;
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.slider-track {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slider-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.slider-slide.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.slider-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* 좌우 화살표 버튼 */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(6px);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.slider-btn:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.slider-prev { left: 16px; }
+.slider-next { right: 16px; }
+
+/* 슬라이드 카운터 */
+.slider-counter {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  z-index: 10;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.85);
+  background: rgba(0, 0, 0, 0.35);
+  padding: 4px 12px;
+  border-radius: 20px;
+  backdrop-filter: blur(4px);
+}
+
+.slider-current {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* 썸네일 */
+.facility-thumbs {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.facility-thumb {
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.55;
+  border: 2px solid transparent;
+  transition: opacity 0.25s, border-color 0.25s;
+}
+
+.facility-thumb:hover {
+  opacity: 0.85;
+}
+
+.facility-thumb.active {
+  opacity: 1;
+  border-color: var(--primary);
+}
+
+.facility-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== 라이트박스 ===== */
+.facility-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.facility-lightbox.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.lightbox-img-wrap {
+  max-width: 90vw;
+  max-height: 88vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lightbox-img-wrap img {
+  max-width: 100%;
+  max-height: 88vh;
+  object-fit: contain;
+  border-radius: 6px;
+  user-select: none;
+  pointer-events: none;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.lightbox-close:hover { background: rgba(255,255,255,0.25); }
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.12);
+  border: 1.5px solid rgba(255,255,255,0.3);
+  color: #fff;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 1;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover { background: rgba(255,255,255,0.28); }
+
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+
+.lightbox-counter {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+  background: rgba(0,0,0,0.35);
+  padding: 4px 14px;
+  border-radius: 20px;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 900px) {
+  .sub-page-header {
+    height: 240px;
+  }
+
+  .sub-tab-link {
+    padding: 14px 20px;
+    font-size: 14px;
+  }
+
+  .slider-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+  }
+
+  .facility-thumbs {
+    gap: 6px;
+  }
+}
+
+@media (max-width: 640px) {
+  .sub-page-header {
+    height: 200px;
+  }
+
+  .sub-tab-list {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .sub-tab-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sub-tab-link {
+    padding: 14px 16px;
+    font-size: 13px;
+  }
+}

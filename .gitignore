@@ -1,3 +1,17 @@
 logo/doduri.pdf
 logo/extracted.svg
 logo/doduri_logo.ai
+
+# 대형 원본/벡터 파일은 추적 제외 (배포에 불필요)
+**/*.ai
+**/*.psd
+wp-content/themes/doduri/assets/images/logo/doduri.pdf
+wp-content/themes/doduri/assets/images/logo/extracted.svg
+
+# WordPress 사용자 영역 (서버에서 관리)
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/plugins/
+wp-content/mu-plugins/
+wp-content/debug.log

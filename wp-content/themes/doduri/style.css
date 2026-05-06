@@ -1,0 +1,21 @@
+/*
+Theme Name: Doduri Animal Clinic
+Theme URI: https://doduri-ah.co.kr
+Author: Doduri Dev Team
+Author URI: https://doduri-ah.co.kr
+Description: 도두리동물병원 공식 워드프레스 테마. 정적 HTML/CSS/JS 프로토타입을 워드프레스 테마로 이식하여, 클라이언트가 관리자 페이지에서 콘텐츠를 직접 편집할 수 있도록 구성. KBoard 게시판 + ACF 옵션 페이지 + GitHub Actions CI/CD(SFTP 배포) 와 함께 동작하도록 설계.
+Version: 0.1.0
+Requires at least: 6.0
+Tested up to: 6.5
+Requires PHP: 7.4
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: doduri
+Tags: korean, veterinary, custom-menu, custom-logo, responsive-layout, threaded-comments
+*/
+
+/*
+ * 본 파일은 WordPress 가 테마를 인식하기 위한 메타데이터 전용 스타일시트.
+ * 실제 사이트 스타일은 assets/css/style.css, assets/css/sub.css 에 있으며
+ * inc/enqueue.php 에서 wp_enqueue_style 로 등록된다.
+ */
