@@ -62,6 +62,37 @@ function doduri_site_info() {
 		'email'      => doduri_option( 'site_email', 'doduri_ah@naver.com' ),
 		'blog'       => doduri_option( 'site_blog_url', 'https://blog.naver.com/doduri_ah' ),
 		'kakao'      => doduri_option( 'site_kakao_url', 'http://pf.kakao.com/_lwlTX' ), // 클라이언트에서 수령 후 옵션 페이지에서 입력
-		'biz_no'     => doduri_option( 'site_biz_no', '' ), // 사업자등록번호 (클라이언트 수령 후 입력)
+		'biz_no'     => doduri_option( 'site_biz_no', '409-26-52253' ),
 	);
+}
+
+/**
+ * 메인 히어로 슬라이드 이미지 URL 배열 — fallback: 시설 사진 5장.
+ *
+ * @return array<string>
+ */
+function doduri_hero_slide_urls() {
+	$slides = doduri_option( 'home_hero_slides', array() );
+
+	$urls = array();
+	if ( is_array( $slides ) && ! empty( $slides ) ) {
+		foreach ( $slides as $item ) {
+			if ( is_array( $item ) && ! empty( $item['url'] ) ) {
+				$urls[] = $item['url'];
+			} elseif ( is_string( $item ) && $item !== '' ) {
+				$urls[] = $item;
+			}
+		}
+	}
+
+	if ( ! empty( $urls ) ) {
+		return $urls;
+	}
+
+	// fallback: 시설 사진 5장
+	$fallback = array();
+	for ( $i = 1; $i <= 5; $i++ ) {
+		$fallback[] = DODURI_THEME_URI . '/assets/images/facility/facility' . $i . '.png';
+	}
+	return $fallback;
 }
