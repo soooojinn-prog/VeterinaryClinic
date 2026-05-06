@@ -42,11 +42,16 @@ function doduri_render_primary_menu() {
 			<a href="<?php echo esc_url( home_url( '/service-subject/' ) ); ?>"><?php esc_html_e( '진료안내', 'doduri' ); ?></a>
 			<ul class="dropdown">
 				<li><a href="<?php echo esc_url( home_url( '/service-subject/' ) ); ?>"><?php esc_html_e( '진료과목', 'doduri' ); ?></a></li>
-				<li><a href="<?php echo esc_url( home_url( '/location/' ) ); ?>"><?php esc_html_e( '진료시간 / 오시는 길', 'doduri' ); ?></a></li>
+				<li><a href="<?php echo esc_url( home_url( '/location/#hours' ) ); ?>"><?php esc_html_e( '진료시간', 'doduri' ); ?></a></li>
+				<li><a href="<?php echo esc_url( home_url( '/location/' ) ); ?>"><?php esc_html_e( '오시는 길', 'doduri' ); ?></a></li>
 			</ul>
 		</li>
-		<li class="nav-item" data-page="contact">
-			<a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>"><?php esc_html_e( '상담/예약', 'doduri' ); ?></a>
+		<li class="nav-item has-dropdown" data-page="community">
+			<a href="<?php echo esc_url( home_url( '/notice/' ) ); ?>"><?php esc_html_e( '커뮤니티', 'doduri' ); ?></a>
+			<ul class="dropdown">
+				<li><a href="<?php echo esc_url( home_url( '/notice/' ) ); ?>"><?php esc_html_e( '공지사항', 'doduri' ); ?></a></li>
+				<li><a href="<?php echo esc_url( home_url( '/qna/' ) ); ?>"><?php esc_html_e( 'Q&amp;A', 'doduri' ); ?></a></li>
+			</ul>
 		</li>
 	</ul>
 	<?php
@@ -85,10 +90,17 @@ function doduri_render_mobile_menu() {
 			<a href="<?php echo esc_url( home_url( '/service-subject/' ) ); ?>" class="mobile-link mobile-parent"><?php esc_html_e( '진료안내', 'doduri' ); ?></a>
 			<ul class="mobile-sub">
 				<li><a href="<?php echo esc_url( home_url( '/service-subject/' ) ); ?>" class="mobile-link"><?php esc_html_e( '진료과목', 'doduri' ); ?></a></li>
-				<li><a href="<?php echo esc_url( home_url( '/location/' ) ); ?>" class="mobile-link"><?php esc_html_e( '진료시간 / 오시는 길', 'doduri' ); ?></a></li>
+				<li><a href="<?php echo esc_url( home_url( '/location/#hours' ) ); ?>" class="mobile-link"><?php esc_html_e( '진료시간', 'doduri' ); ?></a></li>
+				<li><a href="<?php echo esc_url( home_url( '/location/' ) ); ?>" class="mobile-link"><?php esc_html_e( '오시는 길', 'doduri' ); ?></a></li>
 			</ul>
 		</li>
-		<li><a href="<?php echo esc_url( home_url( '/contact/' ) ); ?>" class="mobile-link"><?php esc_html_e( '상담/예약', 'doduri' ); ?></a></li>
+		<li>
+			<a href="<?php echo esc_url( home_url( '/notice/' ) ); ?>" class="mobile-link mobile-parent"><?php esc_html_e( '커뮤니티', 'doduri' ); ?></a>
+			<ul class="mobile-sub">
+				<li><a href="<?php echo esc_url( home_url( '/notice/' ) ); ?>" class="mobile-link"><?php esc_html_e( '공지사항', 'doduri' ); ?></a></li>
+				<li><a href="<?php echo esc_url( home_url( '/qna/' ) ); ?>" class="mobile-link"><?php esc_html_e( 'Q&amp;A', 'doduri' ); ?></a></li>
+			</ul>
+		</li>
 	</ul>
 	<?php
 }
