@@ -22,7 +22,7 @@
     var classMap = [
       { bodyCls: 'page-about',   key: 'about'   },
       { bodyCls: 'page-service', key: 'service' },
-      { bodyCls: 'page-contact', key: 'contact' },
+      { bodyCls: 'page-community', key: 'community' },
     ];
     for (var i = 0; i < classMap.length; i++) {
       if (body.classList.contains(classMap[i].bodyCls)) {
