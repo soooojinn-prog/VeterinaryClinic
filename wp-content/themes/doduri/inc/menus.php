@@ -50,7 +50,7 @@ function doduri_render_primary_menu() {
 			<a href="<?php echo esc_url( home_url( '/notice/' ) ); ?>"><?php esc_html_e( '커뮤니티', 'doduri' ); ?></a>
 			<ul class="dropdown">
 				<li><a href="<?php echo esc_url( home_url( '/notice/' ) ); ?>"><?php esc_html_e( '공지사항', 'doduri' ); ?></a></li>
-				<li><a href="<?php echo esc_url( home_url( '/qna/' ) ); ?>"><?php esc_html_e( 'Q&amp;A', 'doduri' ); ?></a></li>
+				<li><a href="<?php echo esc_url( home_url( '/qna/' ) ); ?>"><?php esc_html_e( 'Q&A', 'doduri' ); ?></a></li>
 			</ul>
 		</li>
 	</ul>
@@ -98,7 +98,7 @@ function doduri_render_mobile_menu() {
 			<a href="<?php echo esc_url( home_url( '/notice/' ) ); ?>" class="mobile-link mobile-parent"><?php esc_html_e( '커뮤니티', 'doduri' ); ?></a>
 			<ul class="mobile-sub">
 				<li><a href="<?php echo esc_url( home_url( '/notice/' ) ); ?>" class="mobile-link"><?php esc_html_e( '공지사항', 'doduri' ); ?></a></li>
-				<li><a href="<?php echo esc_url( home_url( '/qna/' ) ); ?>" class="mobile-link"><?php esc_html_e( 'Q&amp;A', 'doduri' ); ?></a></li>
+				<li><a href="<?php echo esc_url( home_url( '/qna/' ) ); ?>" class="mobile-link"><?php esc_html_e( 'Q&A', 'doduri' ); ?></a></li>
 			</ul>
 		</li>
 	</ul>
