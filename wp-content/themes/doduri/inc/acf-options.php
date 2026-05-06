@@ -61,7 +61,7 @@ function doduri_site_info() {
 		'address'    => doduri_option( 'site_address', '인천 계양구 용종로 2 계산프라자, 도두리동물병원' ),
 		'email'      => doduri_option( 'site_email', 'doduri_ah@naver.com' ),
 		'blog'       => doduri_option( 'site_blog_url', 'https://blog.naver.com/doduri_ah' ),
-		'kakao'      => doduri_option( 'site_kakao_url', '' ), // 클라이언트에서 수령 후 옵션 페이지에서 입력
+		'kakao'      => doduri_option( 'site_kakao_url', 'http://pf.kakao.com/_lwlTX' ), // 클라이언트에서 수령 후 옵션 페이지에서 입력
 		'biz_no'     => doduri_option( 'site_biz_no', '' ), // 사업자등록번호 (클라이언트 수령 후 입력)
 	);
 }

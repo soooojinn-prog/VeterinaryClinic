@@ -48,8 +48,8 @@ $info = doduri_site_info();
 				<a href="<?php echo esc_url( $info['phone_link'] ); ?>"><?php esc_html_e( '전화상담', 'doduri' ); ?></a>
 				<span>|</span>
 				<?php
-				$kakao_href = ! empty( $info['kakao'] ) ? $info['kakao'] : home_url( '/contact/' );
-				$kakao_target = ! empty( $info['kakao'] ) ? ' target="_blank" rel="noopener"' : '';
+				$kakao_href   = ! empty( $info['kakao'] ) ? $info['kakao'] : 'http://pf.kakao.com/_lwlTX';
+				$kakao_target = ' target="_blank" rel="noopener"';
 				?>
 				<a href="<?php echo esc_url( $kakao_href ); ?>"<?php echo $kakao_target; // phpcs:ignore ?>><?php esc_html_e( '카톡상담', 'doduri' ); ?></a>
 				<span>|</span>
@@ -69,20 +69,7 @@ $info = doduri_site_info();
 	<i class="fas fa-chevron-up"></i>
 </button>
 
-<div class="floating-buttons">
-	<a href="<?php echo esc_url( $info['phone_link'] ); ?>" class="float-btn" aria-label="<?php esc_attr_e( '전화상담', 'doduri' ); ?>">
-		<i class="fas fa-phone"></i>
-		<span><?php esc_html_e( '전화상담', 'doduri' ); ?></span>
-	</a>
-	<a href="<?php echo esc_url( $kakao_href ); ?>" class="float-btn" aria-label="<?php esc_attr_e( '카톡상담', 'doduri' ); ?>"<?php echo $kakao_target; // phpcs:ignore ?>>
-		<i class="fas fa-comment"></i>
-		<span><?php esc_html_e( '카톡상담', 'doduri' ); ?></span>
-	</a>
-	<a href="<?php echo esc_url( $info['blog'] ); ?>" class="float-btn" aria-label="<?php esc_attr_e( '블로그', 'doduri' ); ?>" target="_blank" rel="noopener">
-		<i class="fas fa-blog"></i>
-		<span><?php esc_html_e( '블로그', 'doduri' ); ?></span>
-	</a>
-</div>
+<?php get_template_part( 'template-parts/floating-buttons' ); ?>
 
 <?php wp_footer(); ?>
 </body>
