@@ -101,6 +101,16 @@ function doduri_enqueue_assets() {
 			false // head 에 로드 (서브모듈 의존성 때문)
 		);
 	}
+
+	// KBoard 오버라이드 CSS — 공지/Q&A 페이지에서만
+	if ( is_page( array( 'notice', 'qna' ) ) ) {
+		wp_enqueue_style(
+			'doduri-kboard-override',
+			DODURI_THEME_URI . '/assets/css/kboard-override.css',
+			array( 'doduri-style-main' ),
+			$ver
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'doduri_enqueue_assets' );
 
