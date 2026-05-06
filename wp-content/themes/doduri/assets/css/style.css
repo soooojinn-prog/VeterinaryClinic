@@ -1890,3 +1890,115 @@ footer::before {
   font-size: 14px;
   padding: 30px 0;
 }
+
+/* ===== HOME CLINICS + SUMMARY (Task 9) ===== */
+.home-clinics { background: #faf6ef; }
+.home-clinic-grid {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.home-clinic-grid li {
+  background: #fff;
+  padding: 30px 22px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.home-clinic-grid li:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+.home-clinic-grid li i {
+  font-size: 34px;
+  color: #b08651;
+  margin-bottom: 14px;
+  display: block;
+}
+.home-clinic-grid li h3 {
+  font-size: 17px;
+  margin: 0 0 10px;
+  color: #2a2520;
+}
+.home-clinic-grid li p {
+  font-size: 14px;
+  color: #6f655b;
+  margin: 0;
+  line-height: 1.6;
+}
+.home-clinic-more {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.home-summary { background: #fff; }
+.home-summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 28px;
+}
+.home-summary-card {
+  background: #faf6ef;
+  padding: 28px;
+  border-radius: 14px;
+}
+.home-summary-card h3 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 18px;
+  margin: 0 0 16px;
+  color: #2a2520;
+}
+.home-summary-card h3 i { color: #b08651; }
+.home-summary-card dl {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  row-gap: 8px;
+  margin: 0;
+}
+.home-summary-card dt {
+  font-weight: 600;
+  color: #6f655b;
+  font-size: 14px;
+}
+.home-summary-card dd {
+  margin: 0;
+  font-size: 15px;
+  color: #2a2520;
+}
+.home-summary-notice {
+  margin: 14px 0 0;
+  font-size: 13px;
+  color: #b08651;
+}
+.home-summary-addr {
+  margin: 0 0 8px;
+  font-size: 15px;
+  color: #2a2520;
+  line-height: 1.6;
+}
+.home-summary-tel {
+  margin: 0 0 16px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.home-summary-tel a {
+  color: #b08651;
+  text-decoration: none;
+}
+.home-summary-btns {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 900px) {
+  .home-clinic-grid { grid-template-columns: 1fr; }
+  .home-summary-grid { grid-template-columns: 1fr; }
+}
