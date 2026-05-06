@@ -55,7 +55,7 @@ if ( ! function_exists( 'doduri_theme_setup' ) ) {
 add_action( 'after_setup_theme', 'doduri_theme_setup' );
 
 /**
- * body_class 에 페이지 그룹 클래스 추가 (page-about / page-service / page-contact / page-home).
+ * body_class 에 페이지 그룹 클래스 추가 (page-about / page-service / page-community / page-home).
  * 활성 메뉴 표시는 bootstrap.js 가 이 body 클래스를 보고 처리한다.
  */
 function doduri_body_classes( $classes ) {
