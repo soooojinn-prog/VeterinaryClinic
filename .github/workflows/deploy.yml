@@ -1,0 +1,109 @@
+name: Deploy theme to Cafe24
+
+# 트리거:
+#  - master 브랜치에 push 되면서 테마/워크플로우 변경분이 있을 때
+#  - GitHub UI 에서 수동 실행 (workflow_dispatch)
+on:
+  push:
+    branches: [master]
+    paths:
+      - 'wp-content/themes/doduri/**'
+      - '.github/workflows/deploy.yml'
+  workflow_dispatch:
+
+# 같은 브랜치에서 동시 배포 충돌 방지
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  # ===== 1. PHP 구문 검사 =====
+  lint:
+    name: PHP syntax check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          tools: none
+          coverage: none
+
+      - name: Run php -l on all theme PHP files
+        run: |
+          set -e
+          ERRORS=0
+          while IFS= read -r f; do
+            if ! php -l "$f" > /dev/null 2>&1; then
+              echo "::error file=$f::PHP syntax error"
+              php -l "$f" || true
+              ERRORS=$((ERRORS+1))
+            fi
+          done < <(find wp-content/themes/doduri -type f -name '*.php')
+          if [ "$ERRORS" -ne 0 ]; then
+            echo "Found $ERRORS PHP syntax errors"
+            exit 1
+          fi
+          echo "✅ All PHP files passed syntax check"
+
+  # ===== 2. SFTP 배포 =====
+  deploy:
+    name: SFTP deploy to Cafe24
+    needs: lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy theme via SFTP
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+        with:
+          server: ${{ secrets.CAFE24_SFTP_HOST }}
+          port: ${{ secrets.CAFE24_SFTP_PORT }}
+          username: ${{ secrets.CAFE24_SFTP_USER }}
+          password: ${{ secrets.CAFE24_SFTP_PASS }}
+          local_path: './wp-content/themes/doduri/*'
+          remote_path: '/wp-content/themes/doduri/'
+          # 서버에서 클라이언트가 수동 업로드한 파일이나
+          # 다른 플러그인/미디어를 삭제하지 않도록 false 유지.
+          delete_remote_files: false
+          # SFTP 명령 디버그가 필요하면 sftpArgs: '-o ConnectTimeout=30 -v'
+          sftpArgs: '-o ConnectTimeout=30'
+
+  # ===== 3. Discord 알림 =====
+  notify:
+    name: Notify Discord
+    needs: [lint, deploy]
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - name: Compose status
+        id: status
+        run: |
+          if [ "${{ needs.deploy.result }}" = "success" ]; then
+            echo "result=success" >> "$GITHUB_OUTPUT"
+            echo "color=3329330" >> "$GITHUB_OUTPUT"
+          elif [ "${{ needs.lint.result }}" = "failure" ]; then
+            echo "result=failure" >> "$GITHUB_OUTPUT"
+            echo "color=15158332" >> "$GITHUB_OUTPUT"
+          else
+            echo "result=failure" >> "$GITHUB_OUTPUT"
+            echo "color=15158332" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Discord webhook
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ steps.status.outputs.result }}
+          title: '도두리 동물병원 — 배포'
+          description: |
+            **브랜치**: `${{ github.ref_name }}`
+            **커밋**: ${{ github.event.head_commit.message || '수동 실행' }}
+            **작성자**: ${{ github.actor }}
+          username: 'Doduri Deploy Bot'
+          color: ${{ steps.status.outputs.color }}
+          nofail: true

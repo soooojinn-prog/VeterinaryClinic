@@ -1,17 +1,58 @@
-logo/doduri.pdf
-logo/extracted.svg
-logo/doduri_logo.ai
-
-# 대형 원본/벡터 파일은 추적 제외 (배포에 불필요)
-**/*.ai
-**/*.psd
-wp-content/themes/doduri/assets/images/logo/doduri.pdf
-wp-content/themes/doduri/assets/images/logo/extracted.svg
-
-# WordPress 사용자 영역 (서버에서 관리)
+# ===== WordPress 사용자 영역 (서버에서 관리, 배포 대상 아님) =====
 wp-content/uploads/
 wp-content/cache/
 wp-content/upgrade/
 wp-content/plugins/
 wp-content/mu-plugins/
 wp-content/debug.log
+
+# ===== WordPress 코어 (호스팅 자동설치본 사용) =====
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/wp-config.php
+/wp-config-sample.php
+
+# ===== 다른 테마는 추적 안 함 (doduri 만 배포) =====
+wp-content/themes/*
+!wp-content/themes/doduri/
+
+# ===== 대형 원본/벡터 파일 (배포 불필요) =====
+**/*.ai
+**/*.psd
+wp-content/themes/doduri/assets/images/logo/doduri.pdf
+wp-content/themes/doduri/assets/images/logo/extracted.svg
+logo/doduri.pdf
+logo/extracted.svg
+logo/doduri_logo.ai
+
+# ===== IDE / 에이전트 작업 폴더 =====
+.claude/
+.vscode/
+.idea/
+*.code-workspace
+
+# ===== OS 메타파일 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# ===== 의존성 (있다면) =====
+node_modules/
+vendor/
+
+# ===== 로그·임시 파일 =====
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+
+# ===== SFTP 배포 동기화 상태 =====
+.ftp-deploy-sync-state.json
+
+# ===== 환경 변수 (절대 커밋 금지) =====
+.env
+.env.*
+!.env.example
