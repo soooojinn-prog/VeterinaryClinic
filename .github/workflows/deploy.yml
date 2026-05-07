@@ -66,7 +66,8 @@ jobs:
           username: ${{ secrets.CAFE24_SFTP_USER }}
           password: ${{ secrets.CAFE24_SFTP_PASS }}
           local_path: './wp-content/themes/doduri/*'
-          remote_path: '/wp-content/themes/doduri/'
+          # 카페24 SFTP 는 사용자 홈에 chroot. 절대 경로(/) 쓰면 권한 거부됨.
+          remote_path: './wp-content/themes/doduri/'
           # 서버에서 클라이언트가 수동 업로드한 파일이나
           # 다른 플러그인/미디어를 삭제하지 않도록 false 유지.
           delete_remote_files: false
