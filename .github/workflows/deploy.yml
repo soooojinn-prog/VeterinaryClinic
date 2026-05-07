@@ -70,8 +70,8 @@ jobs:
           # 서버에서 클라이언트가 수동 업로드한 파일이나
           # 다른 플러그인/미디어를 삭제하지 않도록 false 유지.
           delete_remote_files: false
-          # SFTP 명령 디버그가 필요하면 sftpArgs: '-o ConnectTimeout=30 -v'
-          sftpArgs: '-o ConnectTimeout=30'
+          # SFTP 명령 디버그 (실패 원인 파악용 verbose). 안정화 후 -v 제거.
+          sftpArgs: '-o ConnectTimeout=30 -v'
 
   # ===== 3. Discord 알림 =====
   notify:
