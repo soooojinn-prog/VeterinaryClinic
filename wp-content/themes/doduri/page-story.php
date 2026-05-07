@@ -1,9 +1,10 @@
 <?php
 /**
- * Template Name: Q&A (community-qna)
- * 슬러그 'qna' 페이지에 적용.
+ * Template Name: 병원이야기 (community-story)
+ * 슬러그 'story' 페이지에 적용.
  *
- * 본문 콘텐츠에 KBoard 숏코드를 입력해 사용한다. — [kboard list="..."]
+ * 본문에 KBoard 숏코드를 입력해 사용한다. — [kboard id="1"]
+ * REQ-014 매핑.
  *
  * @package Doduri
  */
@@ -19,19 +20,20 @@ set_query_var(
 	array(
 		'bg'         => doduri_option( 'sub_community_bg', 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80' ),
 		'title'      => __( '커뮤니티', 'doduri' ),
-		'subtitle'   => __( '도두리동물병원의 공지사항과 Q&A', 'doduri' ),
+		'subtitle'   => __( '도두리동물병원의 이야기와 치료 사례', 'doduri' ),
 		'crumbs'     => array(
 			array(
 				'label' => __( '커뮤니티', 'doduri' ),
-				'url'   => home_url( '/notice/' ),
+				'url'   => home_url( '/story/' ),
 			),
-			array( 'label' => __( 'Q&A', 'doduri' ) ),
+			array( 'label' => __( '병원이야기', 'doduri' ) ),
 		),
 		'tabs'       => array(
-			array( 'key' => 'notice', 'label' => __( '공지사항', 'doduri' ), 'url' => home_url( '/notice/' ) ),
-			array( 'key' => 'qna',    'label' => __( 'Q&A', 'doduri' ),       'url' => home_url( '/qna/' ) ),
+			array( 'key' => 'story', 'label' => __( '병원이야기', 'doduri' ), 'url' => home_url( '/story/' ) ),
+			array( 'key' => 'cases', 'label' => __( '치료 케이스', 'doduri' ), 'url' => home_url( '/cases/' ) ),
+			array( 'key' => 'faq',   'label' => __( 'FAQ', 'doduri' ),         'url' => home_url( '/faq/' ) ),
 		),
-		'active_tab' => 'qna',
+		'active_tab' => 'story',
 	)
 );
 get_template_part( 'template-parts/sub-page-header' );

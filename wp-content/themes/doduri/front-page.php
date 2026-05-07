@@ -19,8 +19,8 @@ $hero_title_em    = doduri_option( 'home_hero_title_em', '도두리동물병원'
 $hero_desc        = doduri_option( 'home_hero_desc', "임상 경험을 바탕으로 지역에서도 믿고 맡길 수 있는\n주치의 같은 병원을 지향합니다." );
 $hero_btn1_label  = doduri_option( 'home_hero_btn1_label', '진료안내 보기' );
 $hero_btn1_url    = doduri_option( 'home_hero_btn1_url', home_url( '/service-subject/' ) );
-$hero_btn2_label  = doduri_option( 'home_hero_btn2_label', '문의하기' );
-$hero_btn2_url    = doduri_option( 'home_hero_btn2_url', home_url( '/qna/' ) );
+$hero_btn2_label  = doduri_option( 'home_hero_btn2_label', '병원이야기' );
+$hero_btn2_url    = doduri_option( 'home_hero_btn2_url', home_url( '/story/' ) );
 ?>
 
 <!-- ===== HERO ===== -->

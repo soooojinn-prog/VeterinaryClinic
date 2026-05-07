@@ -102,8 +102,8 @@ function doduri_enqueue_assets() {
 		);
 	}
 
-	// KBoard 오버라이드 CSS — 공지/Q&A 페이지에서만
-	if ( is_page( array( 'notice', 'qna' ) ) ) {
+	// KBoard 오버라이드 CSS — 커뮤니티(병원이야기/치료 케이스) 페이지에서만
+	if ( is_page( array( 'story', 'cases' ) ) ) {
 		wp_enqueue_style(
 			'doduri-kboard-override',
 			DODURI_THEME_URI . '/assets/css/kboard-override.css',
