@@ -68,7 +68,7 @@ $total = count( $images );
 	<section class="section facility-section">
 		<div class="container">
 			<div class="page-section-heading">
-				<h2><?php esc_html_e( '병원 시설', 'doduri' ); ?></h2>
+				<h2><?php esc_html_e( '시설소개', 'doduri' ); ?></h2>
 			</div>
 
 			<div class="facility-slider">
