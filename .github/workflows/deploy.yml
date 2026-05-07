@@ -66,9 +66,9 @@ jobs:
           port: ${{ secrets.CAFE24_SFTP_PORT }}
           username: ${{ secrets.CAFE24_SFTP_USER }}
           password: ${{ secrets.CAFE24_SFTP_PASS }}
-          # 카페24 SFTP 는 사용자 홈 기준 (상대 경로). 절대 경로 X.
+          # 카페24 WP 루트는 사용자 홈 아래 ./www/ (홈 자체는 wp 루트가 아님!).
           uploads: |
-            ./wp-content/themes/doduri/ => ./wp-content/themes/doduri/
+            ./wp-content/themes/doduri/ => ./www/wp-content/themes/doduri/
           # 서버 수동 업로드/플러그인 보호용 — 원격 삭제 비활성.
           delete: false
 
