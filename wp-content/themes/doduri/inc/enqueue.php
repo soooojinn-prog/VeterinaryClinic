@@ -102,17 +102,27 @@ function doduri_enqueue_assets() {
 		);
 	}
 
-	// KBoard 오버라이드 CSS — 커뮤니티(병원이야기/치료 케이스) 페이지에서만
-	if ( is_page( array( 'story', 'cases' ) ) ) {
-		wp_enqueue_style(
-			'doduri-kboard-override',
-			DODURI_THEME_URI . '/assets/css/kboard-override.css',
-			array( 'doduri-style-main' ),
-			$ver
-		);
-	}
 }
 add_action( 'wp_enqueue_scripts', 'doduri_enqueue_assets' );
+
+/**
+ * KBoard 오버라이드 CSS — KBoard 기본 CSS 보다 늦게 로드해서 우선순위 확보.
+ * priority 999 로 가장 마지막에 enqueue.
+ */
+function doduri_enqueue_kboard_override() {
+	if ( ! ( class_exists( 'KBContent' ) || defined( 'KBOARD_VERSION' ) ) ) {
+		return;
+	}
+	$kboard_css_path = get_template_directory() . '/assets/css/kboard-override.css';
+	$kboard_css_ver  = file_exists( $kboard_css_path ) ? filemtime( $kboard_css_path ) : DODURI_VERSION;
+	wp_enqueue_style(
+		'doduri-kboard-override',
+		DODURI_THEME_URI . '/assets/css/kboard-override.css',
+		array( 'kboard-skin-default', 'doduri-style-main' ),
+		$kboard_css_ver
+	);
+}
+add_action( 'wp_enqueue_scripts', 'doduri_enqueue_kboard_override', 999 );
 
 /**
  * preconnect 힌트(Google Fonts) — 약간의 폰트 로딩 단축.

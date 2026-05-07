@@ -1,129 +1,354 @@
 /**
- * KBoard 오버라이드 — 도두리 테마 톤(#b08651, Noto Sans KR)에 맞춤.
- * notice / qna 페이지에서만 enqueue.
+ * KBoard 6.7 default 스킨 오버라이드 — 도두리 테마 톤(#b08651, Noto Sans KR).
+ *
+ * 셀렉터는 plugins/kboard/skin/default/ 마크업 기준:
+ *   - 루트 ID: #kboard-default-list / #kboard-default-document / #kboard-default-editor
+ *   - 리스트 테이블: .kboard-list table (table 자체엔 클래스 없음)
+ *   - 헤더 셀: thead td (th 가 아님)
+ *   - 버튼: .kboard-default-button-small
+ *   - 페이지네이션: .kboard-pagination .kboard-pagination-pages li
+ *   - 검색: .kboard-search form
+ *   - New 버튼 영역: .kboard-control
+ *
+ * 우선순위(specificity)를 KBoard 기본 CSS 보다 높이기 위해 ID 셀렉터를 적극 사용.
  */
 
-/* 컨테이너 */
-.board-wrap { font-family: inherit; }
-.board-wrap .kboard-default,
-.board-wrap .kboard-default-list,
-.board-wrap .kboard-default-document,
-.board-wrap .kboard-default-editor {
+/* ===== 공통 — 폰트/색상 + KBoard CSS 변수 재정의 =====
+ * KBoard 6.7 은 --kboard-primary(#2563eb 파랑), --kboard-bg-alt(#f8fafc 하늘색) 등의
+ * CSS 변수를 전역적으로 사용한다. 변수 자체를 도두리 톤으로 덮어쓰면
+ * 정렬 드롭다운, 카테고리, 뱃지, 링크 색상이 한 번에 일관되게 적용된다.
+ */
+#kboard-default-list,
+#kboard-default-document,
+#kboard-default-editor,
+#kboard-default-latest {
+	--kboard-primary: #b08651;
+	--kboard-primary-hover: #97713e;
+	--kboard-primary-light: #faf6ef;
+	--kboard-text: #2a2520;
+	--kboard-text-muted: #6f655b;
+	--kboard-bg: #ffffff;
+	--kboard-bg-alt: #faf6ef;
+	--kboard-border: #ece6dc;
+	--kboard-border-light: #f0eae0;
+	--kboard-radius: 8px;
+	--kboard-radius-sm: 6px;
+
 	font-family: 'Noto Sans KR', sans-serif;
 	color: #2a2520;
 }
 
-/* 리스트 헤더 / 행 */
-.board-wrap .kboard-default-list table,
-.board-wrap table.kboard-list {
-	width: 100%;
-	border-collapse: collapse;
+/* 정렬 드롭다운 — 도두리 톤 (KBoard 기본 select 스타일이 변수로 끼어들어서 보강) */
+#kboard-default-list .kboard-sort select {
+	height: 36px !important;
+	padding: 0 32px 0 14px !important;
+	border: 1px solid #ece6dc !important;
+	border-radius: 8px !important;
+	background-color: #fff !important;
+	color: #2a2520 !important;
+	font-size: 14px !important;
+	font-family: inherit !important;
+	font-weight: 500 !important;
+	cursor: pointer;
+}
+#kboard-default-list .kboard-sort select:focus {
+	outline: none !important;
+	border-color: #b08651 !important;
+	box-shadow: 0 0 0 3px rgba(176, 134, 81, 0.15) !important;
+}
+
+/* ===== 리스트 헤더 (Total / Sort) ===== */
+#kboard-default-list .kboard-list-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 14px;
+	padding: 0;
+}
+#kboard-default-list .kboard-total-count {
+	font-size: 14px;
+	color: #6f655b;
+	font-weight: 600;
+}
+
+/* ===== 카테고리 (default 스킨 / tree-tab / tree-select 모두 커버) =====
+ * KBoard 6.7 default 스킨 마크업:
+ *   PC: <div class="kboard-category category-pc"><ul class="kboard-category-list"><li class="kboard-category-selected"><a>All</a></li>...</ul></div>
+ *   모바일: <div class="kboard-category category-mobile"><form><select>...</select></form></div>
+ *   tree-tab/tree-select: .kboard-tree-category-* 계열
+ */
+
+/* PC 카테고리 래퍼 — 배경/테두리 제거, 모바일 select 숨김 */
+#kboard-default-list .kboard-category.category-pc {
+	background: transparent !important;
+	border: none !important;
+	padding: 0 !important;
+	margin-bottom: 18px !important;
+}
+#kboard-default-list .kboard-category.category-mobile {
+	display: none !important;
+}
+
+/* tree 스킨용 래퍼 (해당될 때만) */
+#kboard-default-list .kboard-default-category-list,
+#kboard-default-list .kboard-tree-category-search {
+	background: #faf6ef;
+	border: 1px solid #ece6dc;
+	border-radius: 10px;
+	padding: 14px 18px;
+	margin-bottom: 18px;
+}
+#kboard-default-list .kboard-tree-category-wrap {
+	background: transparent;
+	border: none;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	margin-bottom: 18px;
+}
+#kboard-default-list .kboard-search-option-wrap {
+	display: block;
+}
+
+/* 카테고리 리스트(<ul>) — 한 줄 가로 배치 */
+#kboard-default-list .kboard-category-list,
+#kboard-default-list .kboard-tree-category-list,
+#kboard-default-list .kboard-tree-category,
+#kboard-default-list .kboard-default-category-list {
+	display: flex !important;
+	flex-wrap: wrap;
+	gap: 8px !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	list-style: none !important;
+	background: transparent !important;
+	border: none !important;
+}
+
+/* 카테고리 항목(<li>) — 모든 기본 스타일 제거 */
+#kboard-default-list .kboard-category-list li,
+#kboard-default-list .kboard-tree-category-list li,
+#kboard-default-list .kboard-tree-category li,
+#kboard-default-list .kboard-default-category-list li {
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
+	background: none !important;
+	border: none !important;
+	display: inline-block;
+}
+
+/* 카테고리 링크(<a>) — pill 모양, 도두리 톤 */
+#kboard-default-list .kboard-category-list li a,
+#kboard-default-list .kboard-tree-category-list li a,
+#kboard-default-list .kboard-tree-category li a,
+#kboard-default-list .kboard-default-category-list a {
+	display: inline-block;
+	padding: 7px 16px !important;
+	border-radius: 999px !important;
+	background: #fff !important;
+	color: #2a2520 !important;
+	font-size: 13px !important;
+	font-weight: 500 !important;
+	text-decoration: none !important;
+	border: 1px solid #ece6dc !important;
+	transition: all 0.15s;
+	line-height: 1.4 !important;
+	box-shadow: none !important;
+}
+
+/* hover + 선택된 상태 — 갈색(#b08651) */
+#kboard-default-list .kboard-category-list li a:hover,
+#kboard-default-list .kboard-category-list li.kboard-category-selected a,
+#kboard-default-list .kboard-tree-category-list li a:hover,
+#kboard-default-list .kboard-tree-category li a:hover,
+#kboard-default-list .kboard-default-category-list a:hover,
+#kboard-default-list .kboard-tree-category-list li.kboard-category-selected a,
+#kboard-default-list .kboard-tree-category li.kboard-category-selected a,
+#kboard-default-list .kboard-default-category-list a.kboard-default-category-list-on {
+	background: #b08651 !important;
+	color: #fff !important;
+	border-color: #b08651 !important;
+}
+
+/* ===== 리스트 테이블 ===== */
+#kboard-default-list .kboard-list {
 	background: #fff;
+	border: 1px solid #ece6dc;
 	border-radius: 12px;
 	overflow: hidden;
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
-.board-wrap .kboard-default-list thead th,
-.board-wrap table.kboard-list thead th {
+#kboard-default-list .kboard-list table {
+	width: 100%;
+	border-collapse: collapse;
+	margin: 0;
+}
+#kboard-default-list .kboard-list thead td {
 	background: #faf6ef;
 	color: #2a2520;
 	font-weight: 700;
-	font-size: 14px;
+	font-size: 13px;
 	padding: 14px 12px;
 	border-bottom: 1px solid #ece6dc;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	text-align: center;
 }
-.board-wrap .kboard-default-list tbody td,
-.board-wrap table.kboard-list tbody td {
+#kboard-default-list .kboard-list tbody td {
 	padding: 14px 12px;
 	border-bottom: 1px solid #f0eae0;
 	font-size: 14px;
 	color: #2a2520;
+	text-align: center;
+	vertical-align: middle;
 }
-.board-wrap .kboard-default-list tbody tr:hover,
-.board-wrap table.kboard-list tbody tr:hover {
+#kboard-default-list .kboard-list tbody td.kboard-list-title {
+	text-align: left;
+}
+#kboard-default-list .kboard-list tbody tr:hover {
 	background: #faf6ef;
 }
-.board-wrap .kboard-default-list a,
-.board-wrap table.kboard-list a {
+#kboard-default-list .kboard-list a {
 	color: #2a2520;
 	text-decoration: none;
 }
-.board-wrap .kboard-default-list a:hover,
-.board-wrap table.kboard-list a:hover {
+#kboard-default-list .kboard-list a:hover {
 	color: #b08651;
-	text-decoration: underline;
 }
 
-/* 페이지네이션 */
-.board-wrap .kboard-pagination,
-.board-wrap .kboard-control-row {
-	margin-top: 18px;
+/* ===== 페이지네이션 ===== */
+#kboard-default-list .kboard-pagination {
+	margin: 24px 0 18px;
+	text-align: center;
 }
-.board-wrap .kboard-pagination a,
-.board-wrap .kboard-pagination span {
-	display: inline-block;
-	padding: 6px 12px;
-	margin: 0 2px;
+#kboard-default-list .kboard-pagination-pages {
+	display: inline-flex;
+	gap: 4px;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+#kboard-default-list .kboard-pagination ul li a,
+#kboard-default-list .kboard-pagination ul li span,
+#kboard-default-list .kboard-pagination-pages li a,
+#kboard-default-list .kboard-pagination-pages li span {
+	display: inline-block !important;
+	min-width: 36px !important;
+	padding: 8px 12px !important;
+	border: 1px solid #ece6dc !important;
+	border-radius: 8px !important;
+	background: #fff !important;
+	color: #6f655b !important;
+	text-decoration: none !important;
+	font-size: 14px !important;
+	font-weight: 600 !important;
+	transition: all 0.15s;
+	margin: 0 !important;
+}
+#kboard-default-list .kboard-pagination ul li a:hover,
+#kboard-default-list .kboard-pagination-pages li a:hover {
+	background: #faf6ef !important;
+	color: #b08651 !important;
+	border-color: #b08651 !important;
+}
+#kboard-default-list .kboard-pagination ul li.active a,
+#kboard-default-list .kboard-pagination ul li.active span,
+#kboard-default-list .kboard-pagination-pages li.active a,
+#kboard-default-list .kboard-pagination-pages li.active span,
+#kboard-default-list .kboard-pagination li .kboard-pagination-current {
+	background: #b08651 !important;
+	color: #fff !important;
+	border-color: #b08651 !important;
+}
+
+/* ===== 검색폼 ===== */
+#kboard-default-list .kboard-search {
+	background: #faf6ef;
 	border: 1px solid #ece6dc;
-	border-radius: 6px;
-	color: #6f655b;
-	text-decoration: none;
-	font-size: 14px;
+	border-radius: 10px;
+	padding: 14px 18px;
+	margin: 18px 0;
 }
-.board-wrap .kboard-pagination .kboard-pagination-current,
-.board-wrap .kboard-pagination a:hover {
-	background: #b08651;
-	border-color: #b08651;
-	color: #fff;
-}
-
-/* 검색 박스 */
-.board-wrap .kboard-search,
-.board-wrap .kboard-search-form {
-	margin: 0 0 16px;
+#kboard-default-list .kboard-search form {
 	display: flex;
 	gap: 8px;
 	flex-wrap: wrap;
+	align-items: center;
 }
-.board-wrap .kboard-search input[type="text"],
-.board-wrap .kboard-search-form input[type="text"],
-.board-wrap .kboard-search select {
-	padding: 8px 12px;
+#kboard-default-list .kboard-search select,
+#kboard-default-list .kboard-search input[type="text"] {
+	padding: 9px 12px;
 	border: 1px solid #ece6dc;
-	border-radius: 6px;
+	border-radius: 8px;
+	background: #fff;
 	font-size: 14px;
 	font-family: inherit;
+	color: #2a2520;
+}
+#kboard-default-list .kboard-search input[type="text"] {
+	flex: 1;
+	min-width: 180px;
 }
 
-/* 버튼 — 도두리 톤 */
-.board-wrap .kboard-default-button,
-.board-wrap .kboard-control-button,
-.board-wrap input[type="submit"].kboard-default-button {
-	background: #b08651;
-	color: #fff;
-	border: 1px solid #b08651;
-	border-radius: 6px;
-	padding: 9px 18px;
-	font-size: 14px;
-	font-weight: 700;
-	cursor: pointer;
-	transition: filter 0.2s;
-	font-family: inherit;
+/* ===== 버튼 (New / Search / 게시판 컨트롤) — 도두리 톤 ===== */
+#kboard-default-list a.kboard-default-button-small,
+#kboard-default-list button.kboard-default-button-small,
+#kboard-default-list input.kboard-default-button-small,
+#kboard-default-document a.kboard-default-button-small,
+#kboard-default-document button.kboard-default-button-small,
+#kboard-default-editor a.kboard-default-button-small,
+#kboard-default-editor button.kboard-default-button-small {
+	display: inline-block !important;
+	background: #b08651 !important;
+	color: #fff !important;
+	border: 1px solid #b08651 !important;
+	border-radius: 8px !important;
+	padding: 9px 18px !important;
+	font-size: 14px !important;
+	font-weight: 700 !important;
+	text-decoration: none !important;
+	cursor: pointer !important;
+	transition: filter 0.15s !important;
+	font-family: inherit !important;
 }
-.board-wrap .kboard-default-button:hover,
-.board-wrap input[type="submit"].kboard-default-button:hover {
-	filter: brightness(0.92);
+#kboard-default-list a.kboard-default-button-small:hover,
+#kboard-default-list button.kboard-default-button-small:hover,
+#kboard-default-document a.kboard-default-button-small:hover,
+#kboard-default-document button.kboard-default-button-small:hover,
+#kboard-default-editor a.kboard-default-button-small:hover {
+	filter: brightness(0.92) !important;
+	color: #fff !important;
 }
 
-/* 게시글 상세 */
-.board-wrap .kboard-default-document {
+/* New 버튼 영역 — 우측 정렬 */
+#kboard-default-list .kboard-control {
+	margin-top: 18px;
+	text-align: right;
+}
+
+/* Powered by KBoard — 작게 */
+#kboard-default-list .kboard-default-poweredby {
+	margin-top: 12px;
+	text-align: right;
+	font-size: 12px;
+	color: #b8b1a8;
+}
+#kboard-default-list .kboard-default-poweredby a {
+	color: #b8b1a8;
+	text-decoration: none;
+}
+
+/* ===== 게시글 상세 ===== */
+#kboard-default-document {
 	background: #fff;
 	padding: 28px;
+	border: 1px solid #ece6dc;
 	border-radius: 12px;
 	box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
-.board-wrap .kboard-default-document .kboard-document-header,
-.board-wrap .kboard-default-document h1 {
+#kboard-default-document .kboard-document-header {
 	font-size: 22px;
 	font-weight: 800;
 	color: #2a2520;
@@ -131,37 +356,36 @@
 	padding-bottom: 14px;
 	margin-bottom: 20px;
 }
-.board-wrap .kboard-default-document .kboard-document-meta {
+#kboard-default-document .kboard-document-meta {
 	color: #8a7e72;
 	font-size: 13px;
 	margin-bottom: 18px;
 }
-.board-wrap .kboard-default-document .kboard-document-content {
+#kboard-default-document .kboard-document-content {
 	font-size: 15px;
 	line-height: 1.8;
 	color: #2a2520;
 }
 
-/* 에디터 영역 */
-.board-wrap .kboard-default-editor input[type="text"],
-.board-wrap .kboard-default-editor textarea,
-.board-wrap .kboard-default-editor select {
-	width: 100%;
+/* ===== 에디터 영역 ===== */
+#kboard-default-editor input[type="text"],
+#kboard-default-editor textarea,
+#kboard-default-editor select {
 	padding: 10px 12px;
 	border: 1px solid #ece6dc;
-	border-radius: 6px;
+	border-radius: 8px;
 	font-size: 14px;
 	font-family: inherit;
 	margin-bottom: 10px;
 }
-.board-wrap .kboard-default-editor label {
+#kboard-default-editor label {
 	font-weight: 700;
 	color: #2a2520;
 	margin-bottom: 6px;
 	display: block;
 }
 
-/* 빈 상태 */
+/* ===== 빈 상태 ===== */
 .board-wrap .board-empty {
 	text-align: center;
 	color: #8a7e72;
@@ -169,19 +393,36 @@
 	font-size: 15px;
 }
 
-/* 모바일 */
+/* ===== 모바일 ===== */
 @media (max-width: 768px) {
-	.board-wrap .kboard-default-list table,
-	.board-wrap table.kboard-list {
-		font-size: 13px;
+	#kboard-default-list .kboard-list-header {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 10px;
 	}
-	.board-wrap .kboard-default-list thead th,
-	.board-wrap table.kboard-list thead th,
-	.board-wrap .kboard-default-list tbody td,
-	.board-wrap table.kboard-list tbody td {
-		padding: 10px 8px;
+	#kboard-default-list .kboard-list thead {
+		display: none;
 	}
-	.board-wrap .kboard-default-document {
+	#kboard-default-list .kboard-list tbody td {
+		display: block;
+		text-align: left;
+		border: none;
+		padding: 4px 16px;
+	}
+	#kboard-default-list .kboard-list tbody tr {
+		display: block;
+		padding: 14px 0;
+		border-bottom: 1px solid #ece6dc;
+	}
+	#kboard-default-list .kboard-list tbody td.kboard-list-title {
+		font-weight: 700;
+		font-size: 15px;
+		padding-top: 8px;
+	}
+	#kboard-default-list .kboard-list tbody td.kboard-list-uid {
+		display: none;
+	}
+	#kboard-default-document {
 		padding: 20px 16px;
 	}
 }

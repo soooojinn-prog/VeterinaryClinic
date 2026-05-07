@@ -19,7 +19,7 @@ if ( ! defined( 'DODURI_THEME_URI' ) ) {
 	define( 'DODURI_THEME_URI', get_template_directory_uri() );
 }
 if ( ! defined( 'DODURI_VERSION' ) ) {
-	define( 'DODURI_VERSION', '0.1.0' );
+	define( 'DODURI_VERSION', '0.1.1' );
 }
 
 // 모듈 로드
