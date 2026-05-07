@@ -76,7 +76,7 @@ if ( is_array( $photo_field ) && ! empty( $photo_field['url'] ) ) {
 /* ===== 인사말 레이아웃 (정적 프로토타입과 동일) ===== */
 .greeting-wrap { display:flex; flex-direction:row; gap:70px; align-items:stretch; }
 .greeting-img-wrap { flex:0 0 42%; max-width:42%; display:flex; flex-direction:column; }
-.greeting-img-wrap img { width:100%; height:100%; object-fit:cover; border-radius:8px; }
+.greeting-img-wrap img { width:100%; height:100%; object-fit:cover; object-position:center top; border-radius:8px; }
 .greeting-no-photo { flex:1; background:#e8dfd3; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; }
 .greeting-no-photo i { font-size:64px; color:var(--primary-light); opacity:0.5; }
 .greeting-no-photo span { font-size:13px; color:var(--gray); letter-spacing:0.5px; }
@@ -91,10 +91,10 @@ if ( is_array( $photo_field ) && ! empty( $photo_field['url'] ) ) {
 .greeting-close { margin-top:40px; padding-top:28px; border-top:1px solid var(--gray-light); }
 .greeting-thanks { font-size:15px; font-weight:600; color:var(--dark); margin-bottom:4px; }
 .greeting-sign { font-size:14px; color:var(--gray); }
-@media (max-width:768px){
+@media (max-width:900px){
 	.greeting-wrap { flex-direction:column; gap:36px; }
 	.greeting-img-wrap { flex:none; max-width:100%; width:100%; position:static; }
-	.greeting-img-wrap img { aspect-ratio:4/3; }
+	.greeting-img-wrap img { aspect-ratio:3/4; max-height:520px; object-position:center top; }
 }
 </style>
 
