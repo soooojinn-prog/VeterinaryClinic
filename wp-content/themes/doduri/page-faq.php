@@ -42,7 +42,6 @@ set_query_var(
 		),
 		'tabs'       => array(
 			array( 'key' => 'story', 'label' => __( '병원이야기', 'doduri' ), 'url' => home_url( '/story/' ) ),
-			array( 'key' => 'cases', 'label' => __( '치료 케이스', 'doduri' ), 'url' => home_url( '/cases/' ) ),
 			array( 'key' => 'faq',   'label' => __( 'FAQ', 'doduri' ),         'url' => home_url( '/faq/' ) ),
 		),
 		'active_tab' => 'faq',

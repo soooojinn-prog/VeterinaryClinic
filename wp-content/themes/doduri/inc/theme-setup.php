@@ -71,7 +71,7 @@ function doduri_body_classes( $classes ) {
 			$classes[] = 'page-about';
 		} elseif ( in_array( $slug, array( 'service-subject', 'location' ), true ) ) {
 			$classes[] = 'page-service';
-		} elseif ( in_array( $slug, array( 'story', 'cases', 'faq' ), true ) ) {
+		} elseif ( in_array( $slug, array( 'story', 'faq' ), true ) ) {
 			$classes[] = 'page-community';
 		}
 	}

@@ -50,7 +50,6 @@ function doduri_render_primary_menu() {
 			<a href="<?php echo esc_url( home_url( '/story/' ) ); ?>"><?php esc_html_e( '커뮤니티', 'doduri' ); ?></a>
 			<ul class="dropdown">
 				<li><a href="<?php echo esc_url( home_url( '/story/' ) ); ?>"><?php esc_html_e( '병원이야기', 'doduri' ); ?></a></li>
-				<li><a href="<?php echo esc_url( home_url( '/cases/' ) ); ?>"><?php esc_html_e( '치료 케이스', 'doduri' ); ?></a></li>
 				<li><a href="<?php echo esc_url( home_url( '/faq/' ) ); ?>"><?php esc_html_e( 'FAQ', 'doduri' ); ?></a></li>
 			</ul>
 		</li>
@@ -99,7 +98,6 @@ function doduri_render_mobile_menu() {
 			<a href="<?php echo esc_url( home_url( '/story/' ) ); ?>" class="mobile-link mobile-parent"><?php esc_html_e( '커뮤니티', 'doduri' ); ?></a>
 			<ul class="mobile-sub">
 				<li><a href="<?php echo esc_url( home_url( '/story/' ) ); ?>" class="mobile-link"><?php esc_html_e( '병원이야기', 'doduri' ); ?></a></li>
-				<li><a href="<?php echo esc_url( home_url( '/cases/' ) ); ?>" class="mobile-link"><?php esc_html_e( '치료 케이스', 'doduri' ); ?></a></li>
 				<li><a href="<?php echo esc_url( home_url( '/faq/' ) ); ?>" class="mobile-link"><?php esc_html_e( 'FAQ', 'doduri' ); ?></a></li>
 			</ul>
 		</li>

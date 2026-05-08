@@ -272,7 +272,7 @@ document.addEventListener('app-ready', function () {
 
   /* ===== 인터섹션 옵저버 (fade-up) ===== */
   document.querySelectorAll(
-    '.service-card, .process-step, .testimonial-card, .case-card, .health-item, .stat-item, .news-item'
+    '.service-card, .process-step, .testimonial-card, .health-item, .stat-item, .news-item'
   ).forEach(el => el.classList.add('fade-up'));
 
   const io = new IntersectionObserver(entries => {
