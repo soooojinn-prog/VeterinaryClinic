@@ -90,8 +90,7 @@ function doduri_render_mobile_menu() {
 			<a href="<?php echo esc_url( home_url( '/service-subject/' ) ); ?>" class="mobile-link mobile-parent"><?php esc_html_e( '진료안내', 'doduri' ); ?></a>
 			<ul class="mobile-sub">
 				<li><a href="<?php echo esc_url( home_url( '/service-subject/' ) ); ?>" class="mobile-link"><?php esc_html_e( '진료과목', 'doduri' ); ?></a></li>
-				<li><a href="<?php echo esc_url( home_url( '/location/#hours' ) ); ?>" class="mobile-link"><?php esc_html_e( '진료시간', 'doduri' ); ?></a></li>
-				<li><a href="<?php echo esc_url( home_url( '/location/' ) ); ?>" class="mobile-link"><?php esc_html_e( '오시는 길', 'doduri' ); ?></a></li>
+				<li><a href="<?php echo esc_url( home_url( '/location/' ) ); ?>" class="mobile-link"><?php esc_html_e( '진료시간/오시는 길', 'doduri' ); ?></a></li>
 			</ul>
 		</li>
 		<li>

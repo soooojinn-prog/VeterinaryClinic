@@ -165,6 +165,16 @@
   opacity: 0.5;
 }
 
+/* ===== 진료안내 서브 페이지: 섹션 상하 여백 축소 ===== */
+#subject.section,
+#location.section {
+  padding: 60px 0;
+}
+#subject .section-header,
+#location .section-header {
+  margin-bottom: 32px;
+}
+
 .content-placeholder p {
   font-size: 16px;
   font-weight: 500;

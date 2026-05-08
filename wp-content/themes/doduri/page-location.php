@@ -87,7 +87,7 @@ $kakao_channel = ! empty( $info['kakao'] ) ? $info['kakao'] : 'http://pf.kakao.c
 </style>
 
 <main>
-	<section class="section">
+	<section id="location" class="section">
 		<div class="container">
 			<div class="section-header">
 				<p class="section-tag"><?php esc_html_e( '진료시간 / 오시는길', 'doduri' ); ?></p>
