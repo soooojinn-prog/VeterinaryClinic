@@ -101,19 +101,23 @@ ul { list-style: none; }
   transition: opacity 0.3s ease;
   z-index: -1;
 }
-.btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 35px rgba(158,123,79,0.45), 0 4px 12px rgba(197,166,122,0.2);
+@media (hover: hover) {
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(158,123,79,0.45), 0 4px 12px rgba(197,166,122,0.2);
+  }
+  .btn-primary:hover::before { opacity: 1; }
 }
-.btn-primary:hover::before { opacity: 1; }
 .btn-outline {
   background: transparent;
   color: var(--white);
   border: 2px solid rgba(255,255,255,0.7);
 }
-.btn-outline:hover {
-  background: rgba(255,255,255,0.15);
-  border-color: var(--white);
+@media (hover: hover) {
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.15);
+    border-color: var(--white);
+  }
 }
 .btn-full { width: 100%; justify-content: center; }
 
@@ -1919,9 +1923,11 @@ footer::before {
   color: var(--primary);
   border-color: var(--primary);
 }
-.home-clinic-more .btn-outline:hover {
-  background: var(--primary);
-  color: var(--white);
+@media (hover: hover) {
+  .home-clinic-more .btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+  }
 }
 
 .home-summary { background: #fff; }
