@@ -26,16 +26,14 @@ $hero_desc        = doduri_option( 'home_hero_desc', "임상 경험을 바탕으
 			<div class="hero-slide<?php echo 0 === $idx ? ' active' : ''; ?>" data-index="<?php echo (int) $idx; ?>">
 				<div class="hero-bg" style="background-image: url('<?php echo esc_url( $img_url ); ?>')"></div>
 				<div class="hero-overlay"></div>
-				<?php if ( 0 === $idx ) : ?>
-					<div class="hero-content">
-						<p class="hero-tag"><?php echo esc_html( $hero_tag ); ?></p>
-						<h1>
-							<?php echo esc_html( $hero_title_line1 ); ?><br>
-							<em><?php echo esc_html( $hero_title_em ); ?></em>
-						</h1>
-						<p class="hero-desc"><?php echo nl2br( esc_html( $hero_desc ) ); ?></p>
-					</div>
-				<?php endif; ?>
+				<div class="hero-content">
+					<p class="hero-tag"><?php echo esc_html( $hero_tag ); ?></p>
+					<h1>
+						<?php echo esc_html( $hero_title_line1 ); ?><br>
+						<em><?php echo esc_html( $hero_title_em ); ?></em>
+					</h1>
+					<p class="hero-desc"><?php echo nl2br( esc_html( $hero_desc ) ); ?></p>
+				</div>
 			</div>
 		<?php endforeach; ?>
 	</div>
