@@ -45,7 +45,7 @@ get_template_part( 'template-parts/sub-page-header' );
 				if ( have_posts() ) :
 					while ( have_posts() ) :
 						the_post();
-						the_content();
+						echo do_shortcode( get_the_content() );
 					endwhile;
 				else :
 					echo '<p class="board-empty">' . esc_html__( 'Q&A 게시판을 준비 중입니다.', 'doduri' ) . '</p>';
