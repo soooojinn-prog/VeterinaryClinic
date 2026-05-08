@@ -41,9 +41,11 @@ $hero_desc        = doduri_option( 'home_hero_desc', "임상 경험을 바탕으
 	</div>
 
 	<?php if ( count( $hero_slides ) > 1 ) : ?>
+		<button class="hero-prev" aria-label="<?php esc_attr_e( '이전 슬라이드', 'doduri' ); ?>"><i class="fas fa-chevron-left"></i></button>
+		<button class="hero-next" aria-label="<?php esc_attr_e( '다음 슬라이드', 'doduri' ); ?>"><i class="fas fa-chevron-right"></i></button>
 		<div class="hero-dots">
 			<?php foreach ( $hero_slides as $idx => $img_url ) : ?>
-				<button type="button" class="dot<?php echo 0 === $idx ? ' active' : ''; ?>" data-index="<?php echo (int) $idx; ?>" aria-label="<?php /* translators: %d: 슬라이드 번호 */ printf( esc_attr__( '슬라이드 %d', 'doduri' ), (int) ( $idx + 1 ) ); ?>"></button>
+				<button type="button" class="dot<?php echo 0 === $idx ? ' active' : ''; ?>" data-index="<?php echo (int) $idx; ?>" aria-label="<?php printf( esc_attr__( '슬라이드 %d', 'doduri' ), (int) ( $idx + 1 ) ); ?>"></button>
 			<?php endforeach; ?>
 		</div>
 	<?php endif; ?>

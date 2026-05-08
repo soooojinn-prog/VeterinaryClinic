@@ -210,8 +210,8 @@ main .section {
 .facility-slider-main {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: 420px;
+  aspect-ratio: 3 / 2;
+  max-height: 560px;
   background: #111;
   border-radius: 12px;
   overflow: hidden;
