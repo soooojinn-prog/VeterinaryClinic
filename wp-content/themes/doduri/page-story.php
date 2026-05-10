@@ -41,6 +41,9 @@ get_template_part( 'template-parts/sub-page-header' );
 <main>
 	<section class="section">
 		<div class="container">
+			<div class="section-header">
+				<p class="section-tag"><?php esc_html_e( '병원이야기', 'doduri' ); ?></p>
+			</div>
 			<div class="board-wrap">
 				<?php
 				if ( have_posts() ) :

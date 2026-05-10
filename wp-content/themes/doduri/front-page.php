@@ -98,6 +98,7 @@ $hero_desc        = doduri_option( 'home_hero_desc', "임상 경험을 바탕으
 	$hours_closed_h = doduri_option( 'hours_closed_notice', '※ 목요일, 일요일은 휴진입니다.' );
 	$kakao_url_h    = ! empty( $info_for_home['kakao'] ) ? $info_for_home['kakao'] : 'http://pf.kakao.com/_lwlTX';
 	$naver_url_h    = doduri_option( 'naver_map_url', 'https://naver.me/5nhPYsQU' );
+	$kakao_map_url_h = doduri_option( 'kakao_map_url', 'https://map.kakao.com/link/search/도두리동물병원' );
 	?>
 	<section class="home-summary section">
 		<div class="container">
@@ -117,8 +118,9 @@ $hero_desc        = doduri_option( 'home_hero_desc', "임상 경험을 바탕으
 					<p class="home-summary-addr"><?php echo esc_html( $info_for_home['address'] ); ?></p>
 					<p class="home-summary-tel"><a href="<?php echo esc_url( $info_for_home['phone_link'] ); ?>"><?php echo esc_html( $info_for_home['phone'] ); ?></a></p>
 					<div class="home-summary-btns">
-						<a href="<?php echo esc_url( $naver_url_h ); ?>" target="_blank" rel="noopener" class="btn btn-sm"><?php esc_html_e( '네이버 지도', 'doduri' ); ?></a>
-						<a href="<?php echo esc_url( $kakao_url_h ); ?>" target="_blank" rel="noopener" class="btn btn-sm"><?php esc_html_e( '카톡 채널', 'doduri' ); ?></a>
+						<a href="<?php echo esc_url( $naver_url_h ); ?>" target="_blank" rel="noopener" class="map-btn naver"><?php esc_html_e( '네이버 지도', 'doduri' ); ?></a>
+						<a href="<?php echo esc_url( $kakao_map_url_h ); ?>" target="_blank" rel="noopener" class="map-btn kakao"><?php esc_html_e( '카카오 지도', 'doduri' ); ?></a>
+						<a href="<?php echo esc_url( $kakao_url_h ); ?>" target="_blank" rel="noopener" class="map-btn kakao-ch"><?php esc_html_e( '카톡 채널', 'doduri' ); ?></a>
 					</div>
 				</div>
 

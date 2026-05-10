@@ -67,8 +67,8 @@ $total = count( $images );
 <main>
 	<section class="section facility-section">
 		<div class="container">
-			<div class="page-section-heading">
-				<h2><?php esc_html_e( '시설소개', 'doduri' ); ?></h2>
+			<div class="section-header">
+				<p class="section-tag"><?php esc_html_e( '시설소개', 'doduri' ); ?></p>
 			</div>
 
 			<div class="facility-slider">

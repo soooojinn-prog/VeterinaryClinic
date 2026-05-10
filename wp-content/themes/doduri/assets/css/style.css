@@ -49,11 +49,11 @@ ul { list-style: none; }
   display: inline-block;
   background: rgba(158,123,79,0.1);
   color: var(--primary);
-  font-size: 13px;
+  font-size: 16px;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  padding: 6px 18px;
+  padding: 10px 26px;
   border-radius: 20px;
   margin-bottom: 16px;
 }
@@ -1995,6 +1995,24 @@ footer::before {
   gap: 8px;
   flex-wrap: wrap;
 }
+
+/* ===== 지도/카톡 버튼 (메인·진료안내 공통) ===== */
+.map-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: filter 0.2s;
+  text-decoration: none;
+}
+.map-btn:hover { filter: brightness(0.92); }
+.map-btn.naver { background: #03C75A; color: #fff; }
+.map-btn.kakao { background: #FEE500; color: #3c1e1e; }
+.map-btn.kakao-ch { background: #FEE500; color: #3c1e1e; }
 
 @media (max-width: 900px) {
   .home-clinic-grid { grid-template-columns: 1fr; }
