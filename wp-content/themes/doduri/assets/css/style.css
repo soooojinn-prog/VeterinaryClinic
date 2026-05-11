@@ -1451,6 +1451,13 @@ footer { background: var(--dark); }
   animation: slide-hero-up 0.6s var(--ease-smooth) 0.72s both;
 }
 
+/* 2번째 슬라이드부터: fill-mode backwards가 텍스트를 opacity:0으로 잠그는 문제 방지 */
+.hero-slide:not([data-index="0"]).active .hero-tag,
+.hero-slide:not([data-index="0"]).active h1,
+.hero-slide:not([data-index="0"]).active .hero-desc {
+  animation: none;
+}
+
 /* ===== 타이프라이터 커서 ===== */
 .tw-cursor {
   display: inline-block;
