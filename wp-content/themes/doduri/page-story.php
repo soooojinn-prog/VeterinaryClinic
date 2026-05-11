@@ -18,7 +18,7 @@ get_header();
 set_query_var(
 	'doduri_sub_args',
 	array(
-		'bg'         => doduri_option( 'sub_community_bg', 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=1600&q=80' ),
+		'bg'         => doduri_option( 'sub_community_bg', DODURI_THEME_URI . '/assets/images/facility/facility4.png' ),
 		'title'      => __( '커뮤니티', 'doduri' ),
 		'subtitle'   => __( '도두리동물병원의 이야기와 치료 사례', 'doduri' ),
 		'crumbs'     => array(
