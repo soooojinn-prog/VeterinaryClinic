@@ -1547,6 +1547,18 @@ footer { background: var(--dark); }
 .hero-slide.active .hero-desc {
   animation: slide-hero-up 0.6s var(--ease-smooth) 0.55s both;
 }
+
+/* 첫 번째 슬라이드: h1·desc는 JS 타이프라이터가 직접 제어 */
+.hero-slide[data-index="0"].active h1 {
+  animation: none;
+}
+.hero-slide[data-index="0"] .hero-desc {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+.hero-slide[data-index="0"] .hero-desc.is-visible {
+  opacity: 1;
+}
 .hero-slide.active .hero-btns {
   animation: slide-hero-up 0.6s var(--ease-smooth) 0.72s both;
 }

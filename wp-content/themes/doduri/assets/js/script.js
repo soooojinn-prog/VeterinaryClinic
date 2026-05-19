@@ -203,45 +203,57 @@ document.addEventListener('app-ready', function () {
 
   /* ===== 히어로 타이프라이터 효과 ===== */
   (function initTypewriter() {
-    const firstSlide = document.querySelector('.hero-slide[data-index="0"] h1');
-    if (!firstSlide) return;
+    const h1El = document.querySelector('.hero-slide[data-index="0"] h1');
+    if (!h1El) return;
+
+    // 텍스트 추출 후 즉시 h1 비워서 초기 노출 방지
+    const em = h1El.querySelector('em');
+    const emText = em ? em.textContent : '';
+    const plainText = h1El.textContent.replace(emText, '').trim();
+    h1El.innerHTML = '';
 
     let done = false;
     function runTypewriter() {
       if (done) return;
       done = true;
-      const em = firstSlide.querySelector('em');
-      const emText = em ? em.textContent : '';
-      const plainText = firstSlide.textContent.replace(emText, '').trim();
 
-      firstSlide.innerHTML = '';
       const cursor = document.createElement('span');
       cursor.className = 'tw-cursor';
-      firstSlide.appendChild(cursor);
+      h1El.appendChild(cursor);
 
       let i = 0;
       function typeMain() {
-        if (i <= plainText.length) {
-          firstSlide.innerHTML = plainText.slice(0, i).replace('\n', '<br>');
+        h1El.innerHTML = plainText.slice(0, i).replace('\n', '<br>');
+        h1El.appendChild(cursor);
+        if (i < plainText.length) {
           i++;
-          if (i <= plainText.length) {
-            setTimeout(typeMain, 55);
-          } else {
-            firstSlide.innerHTML += '<br>';
-            const emEl = document.createElement('em');
-            emEl.style.opacity = '0';
-            emEl.style.transition = 'opacity 0.5s ease';
-            emEl.textContent = emText;
-            firstSlide.appendChild(emEl);
-            firstSlide.appendChild(cursor);
-            setTimeout(() => {
-              emEl.style.opacity = '1';
-              setTimeout(() => cursor.remove(), 800);
-            }, 120);
+          setTimeout(typeMain, 80);
+        } else {
+          // 메인 텍스트 완료 → 커서 즉시 제거 후 em 타이핑 시작
+          cursor.remove();
+          h1El.innerHTML += '<br>';
+          const emEl = document.createElement('em');
+          emEl.textContent = '';
+          h1El.appendChild(emEl);
+
+          let j = 0;
+          function typeEm() {
+            emEl.textContent = emText.slice(0, j);
+            if (j < emText.length) {
+              j++;
+              setTimeout(typeEm, 110);
+            } else {
+              // em 완료 → hero-desc 페이드인
+              setTimeout(() => {
+                const desc = document.querySelector('.hero-slide[data-index="0"] .hero-desc');
+                if (desc) desc.classList.add('is-visible');
+              }, 300);
+            }
           }
+          setTimeout(typeEm, 250);
         }
       }
-      setTimeout(typeMain, 600);
+      typeMain();
     }
 
     const firstSlideEl = document.querySelector('.hero-slide[data-index="0"]');
