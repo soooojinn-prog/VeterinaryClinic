@@ -428,6 +428,77 @@ main .section {
   border-radius: 20px;
 }
 
+/* ===== 병원이야기 카드 그리드 ===== */
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-top: 40px;
+}
+
+.story-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.story-card.has-link:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.story-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.story-card-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bg-light, #f7f3ee);
+}
+
+.story-card-media .story-card-img,
+.story-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.story-card.has-link:hover .story-card-media img {
+  transform: scale(1.04);
+}
+
+.story-card-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 36px;
+  color: var(--gray-light, #ccc);
+}
+
+.story-card-title {
+  padding: 18px 20px 22px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--dark, #2b2520);
+  line-height: 1.45;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 /* ===== 반응형 ===== */
 @media (max-width: 900px) {
   .sub-page-header {
@@ -447,6 +518,11 @@ main .section {
 
   .facility-thumbs {
     gap: 6px;
+  }
+
+  .story-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
   }
 }
 
@@ -468,5 +544,15 @@ main .section {
   .sub-tab-link {
     padding: 14px 16px;
     font-size: 13px;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .story-card-title {
+    font-size: 15px;
+    padding: 16px 18px 20px;
   }
 }
