@@ -65,8 +65,8 @@ $kakao_channel = ! empty( $info['kakao'] ) ? $info['kakao'] : 'http://pf.kakao.c
 .location-access li { display:flex; align-items:flex-start; gap:10px; font-size:13px; color:#5a5149; line-height:1.6; }
 .location-access li i { color:var(--primary); font-size:13px; margin-top:2px; flex-shrink:0; width:14px; text-align:center; }
 .access-label { font-weight:700; color:var(--dark); white-space:nowrap; min-width:36px; }
-.location-map-btns { display:flex; gap:8px; margin-bottom:22px; }
-.map-btn { display:inline-flex; align-items:center; gap:6px; padding:9px 18px; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; transition:filter 0.2s; text-decoration:none; }
+.location-map-btns { display:flex; flex-wrap:nowrap; gap:8px; margin-bottom:22px; }
+.map-btn { display:inline-flex; align-items:center; justify-content:center; gap:6px; padding:9px 14px; border-radius:6px; font-size:13px; font-weight:700; cursor:pointer; transition:filter 0.2s; text-decoration:none; white-space:nowrap; flex:1 1 0; min-width:0; }
 .map-btn:hover { filter:brightness(0.92); }
 .map-btn.naver { background:#03C75A; color:#fff; }
 .map-btn.kakao { background:#FEE500; color:#3c1e1e; }
@@ -83,6 +83,11 @@ $kakao_channel = ! empty( $info['kakao'] ) ? $info['kakao'] : 'http://pf.kakao.c
 	.location-wrap { flex-direction:column; padding:20px; gap:20px; }
 	.location-map { flex:none; min-height:260px; }
 	.location-info { padding:0; }
+	.location-map-btns { gap:6px; }
+	.map-btn { padding:9px 8px; font-size:12px; gap:4px; }
+}
+@media (max-width:480px){
+	.map-btn { padding:9px 6px; font-size:11px; gap:3px; }
 }
 </style>
 
