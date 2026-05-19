@@ -101,10 +101,13 @@ if ( is_array( $photo_field ) && ! empty( $photo_field['url'] ) ) {
 .doctor-group ul li { font-size:14px; color:#5a5149; line-height:1.7; padding-left:16px; position:relative; }
 .doctor-group ul li::before { content:'·'; position:absolute; left:2px; color:var(--primary); font-weight:900; font-size:17px; line-height:1.5; }
 @media (max-width:900px){
-	.doctor-card { flex-direction:column; gap:36px; padding:0; background:transparent; border-radius:0; }
+	.doctor-card { flex-direction:column; gap:32px; padding:28px; }
 	.doctor-photo-wrap { flex:none; width:100%; max-width:100%; }
 	.doctor-photo-wrap img { height:auto; width:100%; }
 	.doctor-no-photo { min-height:200px; }
+}
+@media (max-width:480px){
+	.doctor-card { padding:20px; gap:24px; }
 }
 </style>
 
