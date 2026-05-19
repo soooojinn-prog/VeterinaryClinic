@@ -371,6 +371,7 @@ document.addEventListener('app-ready', function () {
           img2.src = src2;
           img2.hidden = false;
         } else {
+          img2.removeAttribute('src');
           img2.hidden = true;
         }
       } else {
@@ -379,6 +380,7 @@ document.addEventListener('app-ready', function () {
         if (!pcSrc) return;
         img1.src = pcSrc;
         img1.hidden = false;
+        img2.removeAttribute('src');
         img2.hidden = true;
       }
 
