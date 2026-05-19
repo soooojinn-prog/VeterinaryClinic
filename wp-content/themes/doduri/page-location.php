@@ -55,9 +55,9 @@ $kakao_channel = ! empty( $info['kakao'] ) ? $info['kakao'] : 'http://pf.kakao.c
 ?>
 
 <style>
-.location-wrap { display:flex; gap:0; border-radius:16px; overflow:hidden; box-shadow:0 4px 30px rgba(0,0,0,0.08); align-items:stretch; }
-.location-map { flex:0 0 55%; min-height:520px; background:#e8eaed; position:relative; overflow:hidden; align-self:stretch; }
-.location-info { flex:1; background:#fff; padding:40px 36px; display:flex; flex-direction:column; justify-content:space-between; gap:0; }
+.location-wrap { display:flex; gap:28px; border-radius:16px; overflow:hidden; box-shadow:0 4px 30px rgba(0,0,0,0.08); align-items:stretch; background:#fff; padding:28px; }
+.location-map { flex:0 0 55%; min-height:520px; background:#e8eaed; position:relative; overflow:hidden; align-self:stretch; border-radius:12px; }
+.location-info { flex:1; background:#fff; padding:0; display:flex; flex-direction:column; justify-content:space-between; gap:0; }
 .location-title { font-size:17px; font-weight:800; color:var(--dark); display:flex; align-items:center; gap:8px; margin-bottom:10px; }
 .location-title i { color:var(--primary); font-size:16px; }
 .location-address { font-size:13px; color:#5a5149; line-height:1.6; margin-bottom:18px; }
@@ -80,9 +80,9 @@ $kakao_channel = ! empty( $info['kakao'] ) ? $info['kakao'] : 'http://pf.kakao.c
 .loc-notice { font-size:12px; color:var(--primary); font-weight:600; }
 .loc-contact p { font-size:14px; color:#5a5149; margin:0; }
 @media (max-width:900px){
-	.location-wrap { flex-direction:column; }
+	.location-wrap { flex-direction:column; padding:20px; gap:20px; }
 	.location-map { flex:none; min-height:260px; }
-	.location-info { padding:28px 24px; }
+	.location-info { padding:0; }
 }
 </style>
 
