@@ -17,10 +17,6 @@ $hero_tag         = doduri_option( 'home_hero_tag', '도두리동물병원' );
 $hero_title_line1 = doduri_option( 'home_hero_title_line1', '우리 동네 평생 건강 지킴이,' );
 $hero_title_em    = doduri_option( 'home_hero_title_em', '도두리동물병원' );
 $hero_desc        = doduri_option( 'home_hero_desc', "임상 경험을 바탕으로 지역에서도 믿고 맡길 수 있는\n주치의 같은 병원을 지향합니다." );
-$hero_btn1_label  = doduri_option( 'home_hero_btn1_label', '진료안내 보기' );
-$hero_btn1_url    = doduri_option( 'home_hero_btn1_url', home_url( '/service-subject/' ) );
-$hero_btn2_label  = doduri_option( 'home_hero_btn2_label', '병원이야기' );
-$hero_btn2_url    = doduri_option( 'home_hero_btn2_url', home_url( '/story/' ) );
 ?>
 
 <!-- ===== HERO ===== -->
@@ -30,34 +26,24 @@ $hero_btn2_url    = doduri_option( 'home_hero_btn2_url', home_url( '/story/' ) )
 			<div class="hero-slide<?php echo 0 === $idx ? ' active' : ''; ?>" data-index="<?php echo (int) $idx; ?>">
 				<div class="hero-bg" style="background-image: url('<?php echo esc_url( $img_url ); ?>')"></div>
 				<div class="hero-overlay"></div>
-				<?php if ( 0 === $idx ) : ?>
-					<div class="hero-content">
-						<p class="hero-tag"><?php echo esc_html( $hero_tag ); ?></p>
-						<h1>
-							<?php echo esc_html( $hero_title_line1 ); ?><br>
-							<em><?php echo esc_html( $hero_title_em ); ?></em>
-						</h1>
-						<p class="hero-desc"><?php echo nl2br( esc_html( $hero_desc ) ); ?></p>
-						<div class="hero-btns">
-							<a href="<?php echo esc_url( $hero_btn1_url ); ?>" class="btn btn-primary"><?php echo esc_html( $hero_btn1_label ); ?></a>
-							<a href="<?php echo esc_url( $hero_btn2_url ); ?>" class="btn btn-outline"><?php echo esc_html( $hero_btn2_label ); ?></a>
-						</div>
-					</div>
-				<?php endif; ?>
+				<div class="hero-content">
+					<p class="hero-tag"><?php echo esc_html( $hero_tag ); ?></p>
+					<h1>
+						<?php echo esc_html( $hero_title_line1 ); ?><br>
+						<em><?php echo esc_html( $hero_title_em ); ?></em>
+					</h1>
+					<p class="hero-desc"><?php echo nl2br( esc_html( $hero_desc ) ); ?></p>
+				</div>
 			</div>
 		<?php endforeach; ?>
 	</div>
 
 	<?php if ( count( $hero_slides ) > 1 ) : ?>
-		<button type="button" class="hero-prev" aria-label="<?php esc_attr_e( '이전 슬라이드', 'doduri' ); ?>">
-			<i class="fas fa-chevron-left"></i>
-		</button>
-		<button type="button" class="hero-next" aria-label="<?php esc_attr_e( '다음 슬라이드', 'doduri' ); ?>">
-			<i class="fas fa-chevron-right"></i>
-		</button>
+		<button class="hero-prev" aria-label="<?php esc_attr_e( '이전 슬라이드', 'doduri' ); ?>"><i class="fas fa-chevron-left"></i></button>
+		<button class="hero-next" aria-label="<?php esc_attr_e( '다음 슬라이드', 'doduri' ); ?>"><i class="fas fa-chevron-right"></i></button>
 		<div class="hero-dots">
 			<?php foreach ( $hero_slides as $idx => $img_url ) : ?>
-				<button type="button" class="dot<?php echo 0 === $idx ? ' active' : ''; ?>" data-index="<?php echo (int) $idx; ?>" aria-label="<?php /* translators: %d: 슬라이드 번호 */ printf( esc_attr__( '슬라이드 %d', 'doduri' ), (int) ( $idx + 1 ) ); ?>"></button>
+				<button type="button" class="dot<?php echo 0 === $idx ? ' active' : ''; ?>" data-index="<?php echo (int) $idx; ?>" aria-label="<?php printf( esc_attr__( '슬라이드 %d', 'doduri' ), (int) ( $idx + 1 ) ); ?>"></button>
 			<?php endforeach; ?>
 		</div>
 	<?php endif; ?>
@@ -112,6 +98,7 @@ $hero_btn2_url    = doduri_option( 'home_hero_btn2_url', home_url( '/story/' ) )
 	$hours_closed_h = doduri_option( 'hours_closed_notice', '※ 목요일, 일요일은 휴진입니다.' );
 	$kakao_url_h    = ! empty( $info_for_home['kakao'] ) ? $info_for_home['kakao'] : 'http://pf.kakao.com/_lwlTX';
 	$naver_url_h    = doduri_option( 'naver_map_url', 'https://naver.me/5nhPYsQU' );
+	$kakao_map_url_h = doduri_option( 'kakao_map_url', 'https://map.kakao.com/link/search/도두리동물병원' );
 	?>
 	<section class="home-summary section">
 		<div class="container">
@@ -131,8 +118,9 @@ $hero_btn2_url    = doduri_option( 'home_hero_btn2_url', home_url( '/story/' ) )
 					<p class="home-summary-addr"><?php echo esc_html( $info_for_home['address'] ); ?></p>
 					<p class="home-summary-tel"><a href="<?php echo esc_url( $info_for_home['phone_link'] ); ?>"><?php echo esc_html( $info_for_home['phone'] ); ?></a></p>
 					<div class="home-summary-btns">
-						<a href="<?php echo esc_url( $naver_url_h ); ?>" target="_blank" rel="noopener" class="btn btn-sm"><?php esc_html_e( '네이버 지도', 'doduri' ); ?></a>
-						<a href="<?php echo esc_url( $kakao_url_h ); ?>" target="_blank" rel="noopener" class="btn btn-sm"><?php esc_html_e( '카톡 채널', 'doduri' ); ?></a>
+						<a href="<?php echo esc_url( $naver_url_h ); ?>" target="_blank" rel="noopener" class="map-btn naver"><?php esc_html_e( '네이버 지도', 'doduri' ); ?></a>
+						<a href="<?php echo esc_url( $kakao_map_url_h ); ?>" target="_blank" rel="noopener" class="map-btn kakao"><?php esc_html_e( '카카오 지도', 'doduri' ); ?></a>
+						<a href="<?php echo esc_url( $kakao_url_h ); ?>" target="_blank" rel="noopener" class="map-btn kakao-ch"><?php esc_html_e( '카톡 채널', 'doduri' ); ?></a>
 					</div>
 				</div>
 
@@ -140,20 +128,6 @@ $hero_btn2_url    = doduri_option( 'home_hero_btn2_url', home_url( '/story/' ) )
 		</div>
 	</section>
 
-	<?php
-	// 관리자 본문 콘텐츠 (있을 때만)
-	if ( have_posts() ) :
-		while ( have_posts() ) :
-			the_post();
-			$content = trim( get_the_content() );
-			if ( $content !== '' ) {
-				echo '<section class="section"><div class="container">';
-				the_content();
-				echo '</div></section>';
-			}
-		endwhile;
-	endif;
-	?>
 </main>
 
 <?php get_footer(); ?>

@@ -15,7 +15,7 @@ get_header();
 set_query_var(
 	'doduri_sub_args',
 	array(
-		'bg'         => doduri_option( 'sub_about_bg', 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=1600&q=80' ),
+		'bg'         => doduri_option( 'sub_about_bg', DODURI_THEME_URI . '/assets/images/facility/facility1.png' ),
 		'title'      => __( '병원소개', 'doduri' ),
 		'subtitle'   => __( '도두리동물병원을 소개합니다', 'doduri' ),
 		'crumbs'     => array(
@@ -87,8 +87,8 @@ if ( is_array( $photo_field ) && ! empty( $photo_field['url'] ) ) {
 
 <style>
 .doctor-card { display:flex; flex-direction:row; gap:56px; align-items:stretch; background:var(--bg-light); border-radius:20px; padding:52px 60px; }
-.doctor-photo-wrap { flex:0 0 260px; display:flex; flex-direction:column; }
-.doctor-photo-wrap img { width:100%; height:100%; object-fit:cover; border-radius:8px; }
+.doctor-photo-wrap { flex:0 0 38%; max-width:38%; background:#c8c8c8; border-radius:8px; }
+.doctor-photo-wrap img { width:100%; height:100%; object-fit:cover; object-position:center top; display:block; border-radius:8px; }
 .doctor-no-photo { flex:1; min-height:240px; background:#e8dfd3; border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:10px; }
 .doctor-no-photo i { font-size:52px; color:var(--primary-light); opacity:0.55; }
 .doctor-no-photo span { font-size:12px; color:var(--gray); letter-spacing:0.5px; }
@@ -103,6 +103,7 @@ if ( is_array( $photo_field ) && ! empty( $photo_field['url'] ) ) {
 @media (max-width:768px){
 	.doctor-card { flex-direction:column; gap:32px; padding:36px 28px; }
 	.doctor-photo-wrap { flex:none; width:100%; }
+	.doctor-photo-wrap img { height:auto; width:100%; }
 	.doctor-no-photo { min-height:200px; }
 }
 </style>
@@ -111,8 +112,8 @@ if ( is_array( $photo_field ) && ! empty( $photo_field['url'] ) ) {
 	<section class="section">
 		<div class="container">
 
-			<div class="page-section-heading">
-				<h2><?php esc_html_e( '의료진 소개', 'doduri' ); ?></h2>
+			<div class="section-header">
+				<p class="section-tag"><?php esc_html_e( '의료진 소개', 'doduri' ); ?></p>
 			</div>
 
 			<div class="doctor-card">

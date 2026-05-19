@@ -59,19 +59,18 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy theme via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
+        # Node ssh2-sftp-client 기반. wlixcc 액션의 put -r 서브폴더 버그 회피.
+        uses: Dylan700/sftp-upload-action@v1.1.4
         with:
           server: ${{ secrets.CAFE24_SFTP_HOST }}
           port: ${{ secrets.CAFE24_SFTP_PORT }}
           username: ${{ secrets.CAFE24_SFTP_USER }}
           password: ${{ secrets.CAFE24_SFTP_PASS }}
-          local_path: './wp-content/themes/doduri/*'
-          remote_path: '/wp-content/themes/doduri/'
-          # 서버에서 클라이언트가 수동 업로드한 파일이나
-          # 다른 플러그인/미디어를 삭제하지 않도록 false 유지.
-          delete_remote_files: false
-          # SFTP 명령 디버그가 필요하면 sftpArgs: '-o ConnectTimeout=30 -v'
-          sftpArgs: '-o ConnectTimeout=30'
+          # 카페24 WP 루트는 사용자 홈 아래 ./www/ (홈 자체는 wp 루트가 아님!).
+          uploads: |
+            ./wp-content/themes/doduri/ => ./www/wp-content/themes/doduri/
+          # 서버 수동 업로드/플러그인 보호용 — 원격 삭제 비활성.
+          delete: false
 
   # ===== 3. Discord 알림 =====
   notify:

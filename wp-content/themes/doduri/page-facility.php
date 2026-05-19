@@ -15,7 +15,7 @@ get_header();
 set_query_var(
 	'doduri_sub_args',
 	array(
-		'bg'         => doduri_option( 'sub_about_bg', 'https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=1600&q=80' ),
+		'bg'         => doduri_option( 'sub_about_bg', DODURI_THEME_URI . '/assets/images/facility/facility1.png' ),
 		'title'      => __( '병원소개', 'doduri' ),
 		'subtitle'   => __( '도두리동물병원을 소개합니다', 'doduri' ),
 		'crumbs'     => array(
@@ -67,8 +67,8 @@ $total = count( $images );
 <main>
 	<section class="section facility-section">
 		<div class="container">
-			<div class="page-section-heading">
-				<h2><?php esc_html_e( '병원 시설', 'doduri' ); ?></h2>
+			<div class="section-header">
+				<p class="section-tag"><?php esc_html_e( '시설소개', 'doduri' ); ?></p>
 			</div>
 
 			<div class="facility-slider">

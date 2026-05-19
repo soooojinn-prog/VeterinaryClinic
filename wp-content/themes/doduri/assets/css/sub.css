@@ -165,6 +165,16 @@
   opacity: 0.5;
 }
 
+/* ===== 진료안내 서브 페이지: 섹션 상하 여백 축소 ===== */
+#subject.section,
+#location.section {
+  padding: 60px 0;
+}
+#subject .section-header,
+#location .section-header {
+  margin-bottom: 32px;
+}
+
 .content-placeholder p {
   font-size: 16px;
   font-weight: 500;
@@ -210,8 +220,8 @@ main .section {
 .facility-slider-main {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
-  max-height: 420px;
+  aspect-ratio: 3 / 2;
+  max-height: 560px;
   background: #111;
   border-radius: 12px;
   overflow: hidden;
@@ -293,7 +303,7 @@ main .section {
 /* 썸네일 */
 .facility-thumbs {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 10px;
   margin-top: 10px;
 }

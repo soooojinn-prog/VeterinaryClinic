@@ -67,6 +67,41 @@ function doduri_site_info() {
 }
 
 /**
+ * Customizer 이미지 ID → URL 변환 내부 헬퍼.
+ */
+function _doduri_theme_mod_image_url( $mod_key ) {
+	$attachment_id = (int) get_theme_mod( $mod_key, 0 );
+	if ( $attachment_id ) {
+		$src = wp_get_attachment_image_url( $attachment_id, 'full' );
+		if ( $src ) {
+			return $src;
+		}
+	}
+	return '';
+}
+
+/**
+ * 진료비 안내 이미지 URL (PC) — 외모 > 사용자 정의하기에서 관리.
+ */
+function doduri_fee_guide_image_url_pc() {
+	return _doduri_theme_mod_image_url( 'fee_guide_image_pc' );
+}
+
+/**
+ * 진료비 안내 이미지 URL ① (모바일 첫 번째).
+ */
+function doduri_fee_guide_image_url() {
+	return _doduri_theme_mod_image_url( 'fee_guide_image' );
+}
+
+/**
+ * 진료비 안내 이미지 URL ② (모바일 두 번째) — 없으면 빈 문자열.
+ */
+function doduri_fee_guide_image_url_2() {
+	return _doduri_theme_mod_image_url( 'fee_guide_image_2' );
+}
+
+/**
  * 메인 히어로 슬라이드 이미지 URL 배열 — fallback: 시설 사진 5장.
  *
  * @return array<string>

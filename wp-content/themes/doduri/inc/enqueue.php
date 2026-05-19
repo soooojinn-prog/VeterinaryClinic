@@ -19,7 +19,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 function doduri_enqueue_assets() {
-	$ver = DODURI_VERSION;
+	$theme_dir = get_template_directory();
+
+	// CSS 파일은 filemtime으로 캐시버스팅 — 파일 수정 시 자동으로 새 버전 적용
+	$ver_style = file_exists( $theme_dir . '/assets/css/style.css' ) ? filemtime( $theme_dir . '/assets/css/style.css' ) : DODURI_VERSION;
+	$ver_sub   = file_exists( $theme_dir . '/assets/css/sub.css' )   ? filemtime( $theme_dir . '/assets/css/sub.css' )   : DODURI_VERSION;
+	$ver_js    = DODURI_VERSION;
 
 	// ===== 외부 폰트/아이콘 =====
 	wp_enqueue_style(
@@ -41,7 +46,7 @@ function doduri_enqueue_assets() {
 		'doduri-style-main',
 		DODURI_THEME_URI . '/assets/css/style.css',
 		array( 'doduri-google-fonts', 'doduri-font-awesome' ),
-		$ver
+		$ver_style
 	);
 
 	// 테마 헤더(style.css 메타) — WP 호환을 위해 등록은 해두되 실제 디자인 영향 없음
@@ -49,7 +54,7 @@ function doduri_enqueue_assets() {
 		'doduri-theme-header',
 		get_stylesheet_uri(),
 		array( 'doduri-style-main' ),
-		$ver
+		$ver_style
 	);
 
 	// 서브 페이지 CSS (프론트 페이지가 아닐 때만)
@@ -58,7 +63,7 @@ function doduri_enqueue_assets() {
 			'doduri-style-sub',
 			DODURI_THEME_URI . '/assets/css/sub.css',
 			array( 'doduri-style-main' ),
-			$ver
+			$ver_sub
 		);
 	}
 
@@ -68,7 +73,7 @@ function doduri_enqueue_assets() {
 		'doduri-bootstrap',
 		DODURI_THEME_URI . '/assets/js/bootstrap.js',
 		array(),
-		$ver,
+		$ver_js,
 		true
 	);
 
@@ -76,7 +81,7 @@ function doduri_enqueue_assets() {
 		'doduri-script',
 		DODURI_THEME_URI . '/assets/js/script.js',
 		array( 'doduri-bootstrap' ),
-		$ver,
+		$ver_js,
 		true
 	);
 
@@ -86,7 +91,7 @@ function doduri_enqueue_assets() {
 			'doduri-sub',
 			DODURI_THEME_URI . '/assets/js/sub.js',
 			array( 'doduri-script' ),
-			$ver,
+			$ver_js,
 			true
 		);
 	}

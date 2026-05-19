@@ -90,6 +90,47 @@ document.addEventListener('app-ready', function () {
       dot.addEventListener('click', () => { goToSlide(i); resetAutoplay(); });
     });
 
+    // 마우스 드래그
+    const hero = document.getElementById('hero');
+    let dragStartX = 0, isDragging = false;
+    hero.addEventListener('mousedown', e => {
+      if (e.target.closest('.hero-prev, .hero-next, .dot')) return;
+      dragStartX = e.clientX; isDragging = false;
+      hero.style.cursor = 'grabbing';
+    });
+    hero.addEventListener('mousemove', e => {
+      if (!e.buttons) return;
+      if (Math.abs(e.clientX - dragStartX) > 5) isDragging = true;
+    });
+    hero.addEventListener('mouseup', e => {
+      hero.style.cursor = '';
+      if (!isDragging) return;
+      const diff = dragStartX - e.clientX;
+      if (Math.abs(diff) > 40) { goToSlide(diff > 0 ? currentSlide + 1 : currentSlide - 1); resetAutoplay(); }
+      isDragging = false;
+    });
+    hero.addEventListener('mouseleave', () => { hero.style.cursor = ''; isDragging = false; });
+
+    // 터치 스와이프
+    let touchStartX = 0;
+    hero.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    hero.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { goToSlide(diff > 0 ? currentSlide + 1 : currentSlide - 1); resetAutoplay(); }
+    });
+
+    // 히어로 벗어나면 화살표 숨김
+    const heroEl = document.getElementById('hero');
+    if (heroEl) {
+      const heroArrows = document.querySelectorAll('.hero-prev, .hero-next');
+      const toggleArrows = () => {
+        const bottom = heroEl.getBoundingClientRect().bottom;
+        heroArrows.forEach(a => a.style.visibility = bottom > 60 ? '' : 'hidden');
+      };
+      window.addEventListener('scroll', toggleArrows, { passive: true });
+      toggleArrows();
+    }
+
     startAutoplay();
   }
 
@@ -231,7 +272,7 @@ document.addEventListener('app-ready', function () {
 
   /* ===== 인터섹션 옵저버 (fade-up) ===== */
   document.querySelectorAll(
-    '.service-card, .process-step, .testimonial-card, .case-card, .health-item, .stat-item, .news-item'
+    '.service-card, .process-step, .testimonial-card, .health-item, .stat-item, .news-item'
   ).forEach(el => el.classList.add('fade-up'));
 
   const io = new IntersectionObserver(entries => {
@@ -270,5 +311,96 @@ document.addEventListener('app-ready', function () {
   }, { threshold: 0.3 });
 
   document.querySelectorAll('.section-header').forEach(h => headerIo.observe(h));
+
+  /* ===== 홈 시설 슬라이더 ===== */
+  (function () {
+    const slider = document.querySelector('.home-facility-slider');
+    if (!slider) return;
+
+    const slides    = slider.querySelectorAll('.home-fac-slide');
+    const prevBtn   = slider.querySelector('.home-fac-prev');
+    const nextBtn   = slider.querySelector('.home-fac-next');
+    const currentEl = slider.querySelector('.home-fac-current');
+    let current = 0;
+    let timer;
+
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      current = (idx + slides.length) % slides.length;
+      slides[current].classList.add('active');
+      if (currentEl) currentEl.textContent = current + 1;
+    }
+
+    function startAuto() { timer = setInterval(() => goTo(current + 1), 5000); }
+    function resetAuto()  { clearInterval(timer); startAuto(); }
+
+    prevBtn.addEventListener('click', () => { goTo(current - 1); resetAuto(); });
+    nextBtn.addEventListener('click', () => { goTo(current + 1); resetAuto(); });
+
+    let touchStartX = 0;
+    slider.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    slider.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) { goTo(diff > 0 ? current + 1 : current - 1); resetAuto(); }
+    });
+
+    startAuto();
+  })();
+
+  /* ===== 진료비 안내 모달 ===== */
+  (function () {
+    const btn    = document.getElementById('feeGuideBtn');
+    const modal  = document.getElementById('feeGuideModal');
+    const img1   = document.getElementById('feeGuideImg');
+    const img2   = document.getElementById('feeGuideImg2');
+    const close  = document.getElementById('feeGuideClose');
+    if (!btn || !modal) return;
+
+    function openModal() {
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const srcPc    = btn.dataset.imgPc;
+      const src1     = btn.dataset.img;
+      const src2     = btn.dataset.img2;
+
+      if (isMobile) {
+        // 모바일: ①② 스크롤
+        if (!src1) return;
+        img1.src = src1;
+        img1.hidden = false;
+        if (src2) {
+          img2.src = src2;
+          img2.hidden = false;
+        } else {
+          img2.removeAttribute('src');
+          img2.hidden = true;
+        }
+      } else {
+        // PC: PC 전용 이미지 1장 (없으면 ① 사용)
+        const pcSrc = srcPc || src1;
+        if (!pcSrc) return;
+        img1.src = pcSrc;
+        img1.hidden = false;
+        img2.removeAttribute('src');
+        img2.hidden = true;
+      }
+
+      modal.querySelector('.fee-guide-scroll').scrollTop = 0;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', openModal);
+    close.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  })();
 
 }); // end app-ready

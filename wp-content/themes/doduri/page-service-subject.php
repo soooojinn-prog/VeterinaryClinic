@@ -15,7 +15,7 @@ get_header();
 set_query_var(
 	'doduri_sub_args',
 	array(
-		'bg'         => doduri_option( 'sub_service_bg', 'https://images.unsplash.com/photo-1548767797-d8c844163c4c?w=1600&q=80' ),
+		'bg'         => doduri_option( 'sub_service_bg', DODURI_THEME_URI . '/assets/images/facility/facility5.png' ),
 		'title'      => __( '진료안내', 'doduri' ),
 		'subtitle'   => __( '도두리동물병원의 진료 서비스를 안내합니다', 'doduri' ),
 		'crumbs'     => array(
