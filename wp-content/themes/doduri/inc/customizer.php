@@ -22,6 +22,27 @@ function doduri_customizer_register( $wp_customize ) {
 		)
 	);
 
+	/* ── 진료비 안내 이미지 PC ── */
+	$wp_customize->add_setting(
+		'fee_guide_image_pc',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'absint',
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Media_Control(
+			$wp_customize,
+			'fee_guide_image_pc',
+			array(
+				'label'       => '진료비 안내 이미지 (PC)',
+				'description' => 'PC에서 표시되는 이미지 (1장)',
+				'section'     => 'doduri_clinic',
+				'mime_type'   => 'image',
+			)
+		)
+	);
+
 	/* ── 진료비 안내 이미지 1 ── */
 	$wp_customize->add_setting(
 		'fee_guide_image',

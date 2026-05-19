@@ -81,14 +81,21 @@ function _doduri_theme_mod_image_url( $mod_key ) {
 }
 
 /**
- * 진료비 안내 이미지 URL ① — 외모 > 사용자 정의하기에서 관리.
+ * 진료비 안내 이미지 URL (PC) — 외모 > 사용자 정의하기에서 관리.
+ */
+function doduri_fee_guide_image_url_pc() {
+	return _doduri_theme_mod_image_url( 'fee_guide_image_pc' );
+}
+
+/**
+ * 진료비 안내 이미지 URL ① (모바일 첫 번째).
  */
 function doduri_fee_guide_image_url() {
 	return _doduri_theme_mod_image_url( 'fee_guide_image' );
 }
 
 /**
- * 진료비 안내 이미지 URL ② — 없으면 빈 문자열.
+ * 진료비 안내 이미지 URL ② (모바일 두 번째) — 없으면 빈 문자열.
  */
 function doduri_fee_guide_image_url_2() {
 	return _doduri_theme_mod_image_url( 'fee_guide_image_2' );

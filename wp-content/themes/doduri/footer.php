@@ -50,11 +50,13 @@ $info = doduri_site_info();
 			<div class="footer-right">
 
 				<?php
-				$fee_img  = doduri_fee_guide_image_url();
-				$fee_img2 = doduri_fee_guide_image_url_2();
+				$fee_img_pc = doduri_fee_guide_image_url_pc();
+				$fee_img    = doduri_fee_guide_image_url();
+				$fee_img2   = doduri_fee_guide_image_url_2();
 				?>
 				<div class="footer-fee-guide">
 					<button class="fee-guide-btn" id="feeGuideBtn"
+						<?php if ( $fee_img_pc ) : ?>data-img-pc="<?php echo esc_attr( $fee_img_pc ); ?>"<?php endif; ?>
 						<?php if ( $fee_img ) : ?>data-img="<?php echo esc_attr( $fee_img ); ?>"<?php endif; ?>
 						<?php if ( $fee_img2 ) : ?>data-img2="<?php echo esc_attr( $fee_img2 ); ?>"<?php endif; ?>
 					>[ 진료비 안내 ]</button>

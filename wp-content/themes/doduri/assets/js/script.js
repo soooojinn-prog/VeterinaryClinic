@@ -357,23 +357,32 @@ document.addEventListener('app-ready', function () {
     if (!btn || !modal) return;
 
     function openModal() {
-      const src1 = btn.dataset.img;
-      const src2 = btn.dataset.img2;
-      if (!src1) return;
+      const isMobile = window.matchMedia('(max-width: 768px)').matches;
+      const srcPc    = btn.dataset.imgPc;
+      const src1     = btn.dataset.img;
+      const src2     = btn.dataset.img2;
 
-      img1.src = src1;
-      img1.hidden = false;
-
-      if (src2) {
-        img2.src = src2;
-        img2.hidden = false;
+      if (isMobile) {
+        // 모바일: ①② 스크롤
+        if (!src1) return;
+        img1.src = src1;
+        img1.hidden = false;
+        if (src2) {
+          img2.src = src2;
+          img2.hidden = false;
+        } else {
+          img2.hidden = true;
+        }
       } else {
+        // PC: PC 전용 이미지 1장 (없으면 ① 사용)
+        const pcSrc = srcPc || src1;
+        if (!pcSrc) return;
+        img1.src = pcSrc;
+        img1.hidden = false;
         img2.hidden = true;
       }
 
-      // 스크롤 위치 초기화
       modal.querySelector('.fee-guide-scroll').scrollTop = 0;
-
       modal.hidden = false;
       document.body.style.overflow = 'hidden';
     }
