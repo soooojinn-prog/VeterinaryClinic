@@ -1294,7 +1294,7 @@ footer { background: var(--dark); }
 .fee-guide-modal[hidden] { display: none; }
 .fee-guide-modal-inner {
   position: relative;
-  width: min(960px, 92vw);
+  width: min(1100px, 92vw);
   max-height: 88vh;
   display: flex;
   flex-direction: column;
@@ -1335,6 +1335,7 @@ footer { background: var(--dark); }
   justify-content: center;
   box-shadow: 0 2px 8px rgba(0,0,0,0.3);
   transition: background 0.2s;
+  z-index: 1;
 }
 .fee-guide-close:hover { background: var(--primary-light); color: #fff; }
 
