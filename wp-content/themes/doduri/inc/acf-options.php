@@ -67,6 +67,22 @@ function doduri_site_info() {
 }
 
 /**
+ * 진료비 안내 이미지 URL — Customizer(외모 > 사용자 정의하기)에서 관리.
+ *
+ * 반환값: 이미지 URL 문자열 또는 빈 문자열.
+ */
+function doduri_fee_guide_image_url() {
+	$attachment_id = (int) get_theme_mod( 'fee_guide_image', 0 );
+	if ( $attachment_id ) {
+		$src = wp_get_attachment_image_url( $attachment_id, 'full' );
+		if ( $src ) {
+			return $src;
+		}
+	}
+	return '';
+}
+
+/**
  * 메인 히어로 슬라이드 이미지 URL 배열 — fallback: 시설 사진 5장.
  *
  * @return array<string>

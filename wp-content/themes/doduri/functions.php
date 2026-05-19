@@ -27,3 +27,4 @@ require_once DODURI_THEME_DIR . '/inc/theme-setup.php';
 require_once DODURI_THEME_DIR . '/inc/enqueue.php';
 require_once DODURI_THEME_DIR . '/inc/menus.php';
 require_once DODURI_THEME_DIR . '/inc/acf-options.php';
+require_once DODURI_THEME_DIR . '/inc/customizer.php';

@@ -1188,12 +1188,23 @@ footer { background: var(--dark); }
 
 .footer-body {
   padding: 60px 0 40px;
-  text-align: center;
+}
+.footer-body .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 80px;
+}
+
+/* 좌측 그룹 */
+.footer-left {
+  display: flex;
+  flex-direction: column;
 }
 
 /* 로고 + 병원명 */
 .footer-identity {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 12px;
   margin-bottom: 20px;
@@ -1226,11 +1237,36 @@ footer { background: var(--dark); }
   line-height: 1.9;
 }
 
+/* 우측 그룹 */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 14px;
+}
+
+/* 진료비 안내 버튼 */
+.footer-fee-guide {
+  display: flex;
+  justify-content: flex-start;
+}
+.fee-guide-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.75);
+  letter-spacing: 0.5px;
+  transition: color 0.2s;
+}
+.fee-guide-btn:hover { color: var(--primary-light); }
+
 /* 빠른 링크 */
 .footer-quick {
   display: flex;
   align-items: center;
-  justify-content: center;
   gap: 10px;
 }
 .footer-quick a {
@@ -1243,6 +1279,51 @@ footer { background: var(--dark); }
   font-size: 11px;
   color: rgba(255,255,255,0.2);
 }
+
+/* 진료비 안내 모달 */
+.fee-guide-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.fee-guide-modal[hidden] { display: none; }
+.fee-guide-modal-inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+.fee-guide-modal-inner img {
+  display: block;
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.fee-guide-close {
+  position: absolute;
+  top: -14px;
+  right: -14px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: #fff;
+  color: #333;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  transition: background 0.2s;
+}
+.fee-guide-close:hover { background: var(--primary-light); color: #fff; }
 
 /* 하단 바 */
 .footer-bottom {
@@ -1330,6 +1411,11 @@ footer { background: var(--dark); }
   .hero-btns { flex-direction: column; }
   .tab-text { padding: 24px 20px; }
   .btn-call span { display: none; }
+  .footer-body .container { flex-direction: column; align-items: center; text-align: center; gap: 30px; }
+  .footer-identity { justify-content: center; }
+  .footer-biz { text-align: center; }
+  .footer-right { align-items: center; }
+  .footer-fee-guide { justify-content: center; }
 }
 
 /* ================================================================

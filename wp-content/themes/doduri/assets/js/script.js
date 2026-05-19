@@ -347,4 +347,34 @@ document.addEventListener('app-ready', function () {
     startAuto();
   })();
 
+  /* ===== 진료비 안내 모달 ===== */
+  (function () {
+    const btn   = document.getElementById('feeGuideBtn');
+    const modal = document.getElementById('feeGuideModal');
+    const img   = document.getElementById('feeGuideImg');
+    const close = document.getElementById('feeGuideClose');
+    if (!btn || !modal) return;
+
+    function openModal() {
+      const src = btn.dataset.img;
+      if (!src) return;
+      img.src = src;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+      modal.hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    btn.addEventListener('click', openModal);
+    close.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !modal.hidden) closeModal();
+    });
+  })();
+
 }); // end app-ready
