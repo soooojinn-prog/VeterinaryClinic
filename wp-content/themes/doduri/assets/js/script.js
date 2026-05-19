@@ -349,16 +349,31 @@ document.addEventListener('app-ready', function () {
 
   /* ===== 진료비 안내 모달 ===== */
   (function () {
-    const btn   = document.getElementById('feeGuideBtn');
-    const modal = document.getElementById('feeGuideModal');
-    const img   = document.getElementById('feeGuideImg');
-    const close = document.getElementById('feeGuideClose');
+    const btn    = document.getElementById('feeGuideBtn');
+    const modal  = document.getElementById('feeGuideModal');
+    const img1   = document.getElementById('feeGuideImg');
+    const img2   = document.getElementById('feeGuideImg2');
+    const close  = document.getElementById('feeGuideClose');
     if (!btn || !modal) return;
 
     function openModal() {
-      const src = btn.dataset.img;
-      if (!src) return;
-      img.src = src;
+      const src1 = btn.dataset.img;
+      const src2 = btn.dataset.img2;
+      if (!src1) return;
+
+      img1.src = src1;
+      img1.hidden = false;
+
+      if (src2) {
+        img2.src = src2;
+        img2.hidden = false;
+      } else {
+        img2.hidden = true;
+      }
+
+      // 스크롤 위치 초기화
+      modal.querySelector('.fee-guide-scroll').scrollTop = 0;
+
       modal.hidden = false;
       document.body.style.overflow = 'hidden';
     }

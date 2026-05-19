@@ -22,12 +22,12 @@ function doduri_customizer_register( $wp_customize ) {
 		)
 	);
 
-	/* ── 진료비 안내 이미지 ── */
+	/* ── 진료비 안내 이미지 1 ── */
 	$wp_customize->add_setting(
 		'fee_guide_image',
 		array(
 			'default'           => '',
-			'sanitize_callback' => 'absint', // 미디어 첨부파일 ID
+			'sanitize_callback' => 'absint',
 		)
 	);
 	$wp_customize->add_control(
@@ -35,9 +35,31 @@ function doduri_customizer_register( $wp_customize ) {
 			$wp_customize,
 			'fee_guide_image',
 			array(
-				'label'     => '진료비 안내 이미지',
-				'section'   => 'doduri_clinic',
-				'mime_type' => 'image',
+				'label'       => '진료비 안내 이미지 ①',
+				'description' => '모바일에서 첫 번째로 표시되는 이미지',
+				'section'     => 'doduri_clinic',
+				'mime_type'   => 'image',
+			)
+		)
+	);
+
+	/* ── 진료비 안내 이미지 2 ── */
+	$wp_customize->add_setting(
+		'fee_guide_image_2',
+		array(
+			'default'           => '',
+			'sanitize_callback' => 'absint',
+		)
+	);
+	$wp_customize->add_control(
+		new WP_Customize_Media_Control(
+			$wp_customize,
+			'fee_guide_image_2',
+			array(
+				'label'       => '진료비 안내 이미지 ②',
+				'description' => '모바일에서 두 번째로 표시되는 이미지 (선택)',
+				'section'     => 'doduri_clinic',
+				'mime_type'   => 'image',
 			)
 		)
 	);

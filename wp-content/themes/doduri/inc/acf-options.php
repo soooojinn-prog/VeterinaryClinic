@@ -67,12 +67,10 @@ function doduri_site_info() {
 }
 
 /**
- * 진료비 안내 이미지 URL — Customizer(외모 > 사용자 정의하기)에서 관리.
- *
- * 반환값: 이미지 URL 문자열 또는 빈 문자열.
+ * Customizer 이미지 ID → URL 변환 내부 헬퍼.
  */
-function doduri_fee_guide_image_url() {
-	$attachment_id = (int) get_theme_mod( 'fee_guide_image', 0 );
+function _doduri_theme_mod_image_url( $mod_key ) {
+	$attachment_id = (int) get_theme_mod( $mod_key, 0 );
 	if ( $attachment_id ) {
 		$src = wp_get_attachment_image_url( $attachment_id, 'full' );
 		if ( $src ) {
@@ -80,6 +78,20 @@ function doduri_fee_guide_image_url() {
 		}
 	}
 	return '';
+}
+
+/**
+ * 진료비 안내 이미지 URL ① — 외모 > 사용자 정의하기에서 관리.
+ */
+function doduri_fee_guide_image_url() {
+	return _doduri_theme_mod_image_url( 'fee_guide_image' );
+}
+
+/**
+ * 진료비 안내 이미지 URL ② — 없으면 빈 문자열.
+ */
+function doduri_fee_guide_image_url_2() {
+	return _doduri_theme_mod_image_url( 'fee_guide_image_2' );
 }
 
 /**

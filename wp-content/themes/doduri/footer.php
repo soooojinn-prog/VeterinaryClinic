@@ -49,10 +49,14 @@ $info = doduri_site_info();
 			<!-- 우: 진료비 안내 + 빠른 링크 -->
 			<div class="footer-right">
 
-				<?php $fee_img = doduri_fee_guide_image_url(); ?>
+				<?php
+				$fee_img  = doduri_fee_guide_image_url();
+				$fee_img2 = doduri_fee_guide_image_url_2();
+				?>
 				<div class="footer-fee-guide">
 					<button class="fee-guide-btn" id="feeGuideBtn"
 						<?php if ( $fee_img ) : ?>data-img="<?php echo esc_attr( $fee_img ); ?>"<?php endif; ?>
+						<?php if ( $fee_img2 ) : ?>data-img2="<?php echo esc_attr( $fee_img2 ); ?>"<?php endif; ?>
 					>[ 진료비 안내 ]</button>
 				</div>
 
@@ -74,7 +78,10 @@ $info = doduri_site_info();
 			<div class="fee-guide-modal" id="feeGuideModal" hidden>
 				<div class="fee-guide-modal-inner">
 					<button class="fee-guide-close" id="feeGuideClose" aria-label="닫기">&times;</button>
-					<img src="" alt="진료비 안내" id="feeGuideImg" />
+					<div class="fee-guide-scroll">
+						<img src="" alt="진료비 안내 1" id="feeGuideImg" />
+						<img src="" alt="진료비 안내 2" id="feeGuideImg2" hidden />
+					</div>
 				</div>
 			</div>
 

@@ -1193,7 +1193,7 @@ footer { background: var(--dark); }
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 80px;
+  gap: 120px;
 }
 
 /* 좌측 그룹 */
@@ -1241,7 +1241,7 @@ footer { background: var(--dark); }
 .footer-right {
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  align-items: flex-start;
   gap: 14px;
 }
 
@@ -1294,16 +1294,28 @@ footer { background: var(--dark); }
 .fee-guide-modal[hidden] { display: none; }
 .fee-guide-modal-inner {
   position: relative;
-  max-width: 90vw;
-  max-height: 90vh;
+  width: min(640px, 92vw);
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
 }
-.fee-guide-modal-inner img {
-  display: block;
-  max-width: 100%;
-  max-height: 90vh;
+.fee-guide-scroll {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.fee-guide-scroll img {
+  display: block;
+  width: 100%;
+  height: auto;
   box-shadow: 0 20px 60px rgba(0,0,0,0.5);
 }
+.fee-guide-scroll img:first-child { border-radius: 8px 8px 0 0; }
+.fee-guide-scroll img:last-child  { border-radius: 0 0 8px 8px; }
+.fee-guide-scroll img:only-child  { border-radius: 8px; }
 .fee-guide-close {
   position: absolute;
   top: -14px;
