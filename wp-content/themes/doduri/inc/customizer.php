@@ -17,7 +17,7 @@ function doduri_customizer_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'doduri_clinic',
 		array(
-			'title'    => '도두리 병원 설정',
+			'title'    => '진료비 안내 이미지 설정',
 			'priority' => 30,
 		)
 	);
