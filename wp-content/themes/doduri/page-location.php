@@ -55,9 +55,9 @@ $kakao_channel = ! empty( $info['kakao'] ) ? $info['kakao'] : 'http://pf.kakao.c
 ?>
 
 <style>
-.location-wrap { display:flex; gap:0; border-radius:16px; overflow:hidden; box-shadow:0 4px 30px rgba(0,0,0,0.08); }
-.location-map { flex:0 0 55%; min-height:520px; background:#e8eaed; position:relative; overflow:hidden; }
-.location-info { flex:1; background:#fff; padding:40px 36px; display:flex; flex-direction:column; gap:0; }
+.location-wrap { display:flex; gap:0; border-radius:16px; overflow:hidden; box-shadow:0 4px 30px rgba(0,0,0,0.08); align-items:stretch; }
+.location-map { flex:0 0 55%; min-height:520px; background:#e8eaed; position:relative; overflow:hidden; align-self:stretch; }
+.location-info { flex:1; background:#fff; padding:40px 36px; display:flex; flex-direction:column; justify-content:space-between; gap:0; }
 .location-title { font-size:17px; font-weight:800; color:var(--dark); display:flex; align-items:center; gap:8px; margin-bottom:10px; }
 .location-title i { color:var(--primary); font-size:16px; }
 .location-address { font-size:13px; color:#5a5149; line-height:1.6; margin-bottom:18px; }
