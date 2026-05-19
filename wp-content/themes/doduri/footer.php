@@ -72,6 +72,10 @@ $info = doduri_site_info();
 					<a href="<?php echo esc_url( $kakao_href ); ?>"<?php echo $kakao_target; // phpcs:ignore ?>><?php esc_html_e( '카톡상담', 'doduri' ); ?></a>
 					<span>|</span>
 					<a href="<?php echo esc_url( $info['blog'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( '블로그', 'doduri' ); ?></a>
+					<?php if ( ! empty( $info['instagram'] ) ) : ?>
+						<span>|</span>
+						<a href="<?php echo esc_url( $info['instagram'] ); ?>" target="_blank" rel="noopener"><?php esc_html_e( '인스타그램', 'doduri' ); ?></a>
+					<?php endif; ?>
 				</div>
 
 			</div>

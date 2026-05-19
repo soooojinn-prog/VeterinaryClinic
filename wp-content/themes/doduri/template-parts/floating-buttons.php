@@ -27,4 +27,10 @@ $kakao_href = ! empty( $info['kakao'] ) ? $info['kakao'] : 'http://pf.kakao.com/
 		<i class="fas fa-blog"></i>
 		<span><?php esc_html_e( '블로그', 'doduri' ); ?></span>
 	</a>
+	<?php if ( ! empty( $info['instagram'] ) ) : ?>
+		<a href="<?php echo esc_url( $info['instagram'] ); ?>" class="float-btn" aria-label="<?php esc_attr_e( '인스타그램', 'doduri' ); ?>" target="_blank" rel="noopener">
+			<i class="fab fa-instagram"></i>
+			<span><?php esc_html_e( '인스타', 'doduri' ); ?></span>
+		</a>
+	<?php endif; ?>
 </div>

@@ -62,6 +62,7 @@ function doduri_site_info() {
 		'email'      => doduri_option( 'site_email', 'doduri_ah@naver.com' ),
 		'blog'       => doduri_option( 'site_blog_url', 'https://blog.naver.com/doduri_ah' ),
 		'kakao'      => doduri_option( 'site_kakao_url', 'http://pf.kakao.com/_lwlTX' ), // 클라이언트에서 수령 후 옵션 페이지에서 입력
+		'instagram'  => doduri_option( 'site_instagram_url', 'https://www.instagram.com/doduri_ah' ),
 		'biz_no'     => doduri_option( 'site_biz_no', '409-26-52253' ),
 	);
 }
