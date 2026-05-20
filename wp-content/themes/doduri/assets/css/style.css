@@ -2004,10 +2004,6 @@ footer::before {
   font-size: 14px;
   padding: 30px 0;
 }
-/* 모바일: 병원이야기 최신글 1개만 노출 */
-@media (max-width: 640px) {
-  .home-notice-list li:nth-child(n+2) { display: none; }
-}
 
 /* ===== HOME CLINICS + SUMMARY (Task 9) ===== */
 .home-clinics { background: #faf6ef; }
