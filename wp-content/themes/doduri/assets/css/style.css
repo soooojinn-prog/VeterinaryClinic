@@ -1973,7 +1973,7 @@ footer::before {
 .home-notice-list li {
   flex: 1 1 280px;
   max-width: 380px;
-  background: #fff;
+  background: #faf6ef;
   border-radius: 14px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
   transition: transform 0.2s, box-shadow 0.2s;
