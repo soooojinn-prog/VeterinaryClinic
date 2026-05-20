@@ -1353,13 +1353,13 @@ footer { background: var(--dark); }
 /* ===== BACK TO TOP ===== */
 .back-to-top {
   position: fixed;
-  bottom: 32px;
-  right: 32px;
-  width: 48px; height: 48px;
+  top: calc(50% + 132px);
+  right: 24px;
+  width: 56px; height: 56px;
   background: var(--primary);
   color: white;
   border: none;
-  border-radius: 14px;
+  border-radius: 12px;
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0 4px 20px rgba(158,123,79,0.4);
@@ -1676,9 +1676,9 @@ footer { background: var(--dark); }
 /* ===== 뒤로가기 버튼 개선 ===== */
 .back-to-top {
   background: linear-gradient(135deg, var(--primary), var(--primary-light)) !important;
-  border-radius: 50% !important;
-  width: 52px !important;
-  height: 52px !important;
+  border-radius: 12px !important;
+  width: 56px !important;
+  height: 56px !important;
 }
 .back-to-top:hover {
   box-shadow: 0 8px 30px rgba(158,123,79,0.55) !important;
@@ -1861,7 +1861,8 @@ footer::before {
 .floating-buttons {
   position: fixed;
   right: 24px;
-  top: 62%;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -1902,13 +1903,18 @@ footer::before {
 @media (max-width: 900px) {
   .floating-buttons {
     top: auto;
-    bottom: 80px;
+    bottom: 110px;
     right: 16px;
     transform: none;
   }
   .float-btn {
     width: 48px;
     height: 48px;
+  }
+  .back-to-top {
+    top: auto;
+    bottom: 32px;
+    right: 16px;
   }
 }
 
@@ -1948,7 +1954,9 @@ footer::before {
   }
   /* 맨 위로 버튼을 하단 탭바 위로 올림 */
   .back-to-top {
+    top: auto;
     bottom: calc(56px + 16px);
+    right: 16px;
   }
 }
 
