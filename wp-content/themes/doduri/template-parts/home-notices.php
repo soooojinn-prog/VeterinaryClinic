@@ -85,6 +85,7 @@ if ( empty( $notices ) ) {
 				<?php foreach ( $notices as $n ) : ?>
 					<li>
 						<a href="<?php echo esc_url( $n['url'] ); ?>">
+							<i class="fas fa-bullhorn" aria-hidden="true"></i>
 							<span class="hn-title"><?php echo esc_html( $n['title'] ); ?></span>
 						</a>
 					</li>
