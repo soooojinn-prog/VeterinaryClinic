@@ -1353,7 +1353,7 @@ footer { background: var(--dark); }
 /* ===== BACK TO TOP ===== */
 .back-to-top {
   position: fixed;
-  top: calc(50% + 132px);
+  top: calc(50% + 288px);
   right: 24px;
   width: 56px; height: 56px;
   background: var(--primary);
@@ -1861,8 +1861,7 @@ footer::before {
 .floating-buttons {
   position: fixed;
   right: 24px;
-  top: 50%;
-  transform: translateY(-50%);
+  top: calc(50% + 32px);
   display: flex;
   flex-direction: column;
   gap: 8px;
